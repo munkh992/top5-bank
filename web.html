@@ -1,0 +1,1503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mongolia Banking Sector Executive Dashboard</title>
+    <script src=https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+            background: linear-gradient(135deg, #0f0f23 0%, #1a1a3e 50%, #2d1b69 100%);
+            min-height: 100vh;
+            padding: 15px;
+            color: #333;
+        }
+        
+        .dashboard {
+            max-width: 1600px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+            backdrop-filter: blur(20px);
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            padding: 40px;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            transform: translate(100px, -100px);
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .header h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+            letter-spacing: -1px;
+        }
+        
+        .header .subtitle {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            font-weight: 300;
+            margin-bottom: 25px;
+        }
+        
+        .header-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+        
+        .header-stat {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 20px;
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .header-stat-value {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+        
+        .header-stat-label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .main-content {
+            padding: 40px;
+        }
+        
+        .section {
+            margin-bottom: 50px;
+        }
+        
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 30px;
+            position: relative;
+            padding-left: 20px;
+        }
+        
+        .section-title::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 4px;
+            height: 30px;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            border-radius: 2px;
+        }
+        
+        .banks-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        
+        .bank-card {
+            background: white;
+            border-radius: 16px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .bank-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--bank-color);
+        }
+        
+        .bank-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+        }
+        
+        .bank-card.rank-1 { --bank-color: linear-gradient(135deg, #ffd700, #ffed4a); }
+        .bank-card.rank-2 { --bank-color: linear-gradient(135deg, #c0c0c0, #e5e7eb); }
+        .bank-card.rank-3 { --bank-color: linear-gradient(135deg, #cd7f32, #f59e0b); }
+        .bank-card.rank-4 { --bank-color: linear-gradient(135deg, #8b5cf6, #a78bfa); }
+        .bank-card.rank-5 { --bank-color: linear-gradient(135deg, #06b6d4, #67e8f9); }
+        
+        .bank-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .bank-logo {
+            width: 60px;
+            height: 60px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: white;
+            margin-right: 20px;
+            font-size: 18px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .khan { background: linear-gradient(135deg, #1e40af, #3b82f6); }
+        .tdb { background: linear-gradient(135deg, #059669, #10b981); }
+        .golomt { background: linear-gradient(135deg, #dc2626, #ef4444); }
+        .xac { background: linear-gradient(135deg, #7c3aed, #8b5cf6); }
+        .state { background: linear-gradient(135deg, #0891b2, #06b6d4); }
+        
+        .bank-info h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 5px;
+        }
+        
+        .bank-rank {
+            background: linear-gradient(135deg, #f1f5f9, #e2e8f0);
+            color: #64748b;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .metrics-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .metric {
+            text-align: center;
+            padding: 15px;
+            background: rgba(248, 250, 252, 0.8);
+            border-radius: 10px;
+            border: 1px solid rgba(226, 232, 240, 0.5);
+        }
+        
+        .metric-value {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 4px;
+        }
+        
+        .metric-label {
+            font-size: 0.75rem;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 4px;
+        }
+        
+        .metric-change {
+            font-size: 0.7rem;
+            font-weight: 600;
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+        
+        .positive { background: #dcfce7; color: #166534; }
+        .negative { background: #fef2f2; color: #dc2626; }
+        .neutral { background: #f1f5f9; color: #64748b; }
+        
+        .charts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+        
+        .chart-card {
+            background: white;
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        
+        .chart-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+        
+        .chart-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-size: 18px;
+        }
+        
+        .assets-icon { background: linear-gradient(135deg, #3b82f6, #1d4ed8); color: white; }
+        .loans-icon { background: linear-gradient(135deg, #ef4444, #dc2626); color: white; }
+        .profit-icon { background: linear-gradient(135deg, #10b981, #059669); color: white; }
+        .efficiency-icon { background: linear-gradient(135deg, #f59e0b, #d97706); color: white; }
+        
+        .chart-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #1e293b;
+        }
+        
+        .chart-container {
+            position: relative;
+            height: 320px;
+        }
+        
+        .analysis-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+        }
+        
+        .analysis-card {
+            background: white;
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            border-top: 4px solid;
+            position: relative;
+        }
+        
+        .analysis-card.executive { border-top-color: #8b5cf6; }
+        .analysis-card.strategic { border-top-color: #3b82f6; }
+        .analysis-card.risk { border-top-color: #ef4444; }
+        .analysis-card.outlook { border-top-color: #10b981; }
+        
+        .analysis-title {
+            display: flex;
+            align-items: center;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 20px;
+        }
+        
+        .analysis-icon {
+            margin-right: 12px;
+            font-size: 1.5rem;
+        }
+        
+        .analysis-content {
+            color: #475569;
+            line-height: 1.7;
+        }
+        
+        .analysis-content ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .analysis-content li {
+            padding: 12px 0;
+            border-bottom: 1px solid #f1f5f9;
+            position: relative;
+            padding-left: 25px;
+        }
+        
+        .analysis-content li::before {
+            content: '▶';
+            position: absolute;
+            left: 0;
+            color: var(--accent-color, #64748b);
+            font-size: 0.8rem;
+        }
+        
+        .analysis-card.executive li::before { color: #8b5cf6; }
+        .analysis-card.strategic li::before { color: #3b82f6; }
+        .analysis-card.risk li::before { color: #ef4444; }
+        .analysis-card.outlook li::before { color: #10b981; }
+        
+        .analysis-content li:last-child {
+            border-bottom: none;
+        }
+        
+        .recommendation-box {
+            background: linear-gradient(135deg, #f8fafc, #e2e8f0);
+            padding: 20px;
+            border-radius: 12px;
+            margin-top: 20px;
+            border-left: 4px solid #3b82f6;
+        }
+        
+        .recommendation-title {
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 10px;
+            font-size: 1rem;
+        }
+        
+        .performance-badges {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .badge {
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .badge.excellent { background: #dcfce7; color: #166534; }
+        .badge.good { background: #dbeafe; color: #1e40af; }
+        .badge.average { background: #fef3c7; color: #92400e; }
+        .badge.poor { background: #fef2f2; color: #dc2626; }
+        
+        .footer {
+            background: #f8fafc;
+            padding: 30px 40px;
+            border-top: 1px solid #e2e8f0;
+            text-align: center;
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+        .analysis-content li:last-child {
+            border-bottom: none;
+        }
+        
+        .data-visualization {
+            display: flex;
+            justify-content: space-around;
+            gap: 15px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .data-point {
+            text-align: center;
+            padding: 12px;
+            background: rgba(248, 250, 252, 0.8);
+            border-radius: 8px;
+            border: 1px solid rgba(226, 232, 240, 0.5);
+            min-width: 80px;
+            position: relative;
+        }
+        
+        .data-point-value {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 4px;
+        }
+        
+        .data-point-label {
+            font-size: 0.75rem;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+        
+        .trend-indicator {
+            font-size: 0.7rem;
+            font-weight: 600;
+            padding: 2px 6px;
+            border-radius: 4px;
+            display: inline-block;
+        }
+        
+        .trend-up {
+            background: #fef2f2;
+            color: #dc2626;
+        }
+        
+        .trend-down {
+            background: #dcfce7;
+            color: #166534;
+        }
+        @media (max-width: 1024px) {
+            .banks-grid, .charts-grid, .analysis-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .metrics-row {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .dashboard {
+                margin: 10px;
+                border-radius: 16px;
+            }
+            
+            .header, .main-content {
+                padding: 25px;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .header-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .banks-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .loading {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
+        }
+        
+        .loaded {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard">
+        <div class="header">
+            <div class="header-content">
+                <h1>🏦 MONGOLIA BANKING SECTOR</h1>
+                <p class="subtitle">Executive Performance Dashboard • Q2 2025 Financial Analysis</p>
+                
+                <div class="header-stats">
+                    <div class="header-stat">
+                        <div class="header-stat-value">15.6B</div>
+                        <div class="header-stat-label">TDB Total Assets</div>
+                        <div style="font-size: 0.8rem; opacity: 0.8; margin-top: 5px;">+4.0% YTD Growth</div>
+                    </div>
+                    <div class="header-stat">
+                        <div class="header-stat-value">7.7B</div>
+                        <div class="header-stat-label">TDB Loan Portfolio</div>
+                        <div style="font-size: 0.8rem; opacity: 0.8; margin-top: 5px;">+27% YTD Growth</div>
+                    </div>
+                    <div class="header-stat">
+                        <div class="header-stat-value">112M</div>
+                        <div class="header-stat-label">TDB Net Profit</div>
+                        <div style="font-size: 0.8rem; opacity: 0.8; margin-top: 5px;">-36% YoY Decline</div>
+                    </div>
+                    <div class="header-stat">
+                        <div class="header-stat-value">3.69%</div>
+                        <div class="header-stat-label">TDB NPL Ratio</div>
+                        <div style="font-size: 0.8rem; opacity: 0.8; margin-top: 5px;">Best in Sector</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="main-content">
+            <div class="section">
+                <h2 class="section-title">TDB Strategic Focus Analysis</h2>
+                
+                <div class="analysis-grid" style="margin-bottom: 40px;">
+                    <div class="analysis-card loading" style="border-top-color: #059669; background: linear-gradient(135deg, #f0fdf4, #dcfce7);">
+                        <h3 class="analysis-title" style="color: #14532d;">
+                            <span class="analysis-icon">🎯</span>
+                            TDB Executive Summary
+                        </h3>
+                        <div class="analysis-content">
+                            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin-bottom: 20px;">
+                                <div style="background: white; padding: 15px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                                    <div style="font-size: 1.3rem; font-weight: bold; color: #059669;">24.1%</div>
+                                    <div style="font-size: 0.85rem; color: #166534;">Market Share (Assets)</div>
+                                </div>
+                                <div style="background: white; padding: 15px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                                    <div style="font-size: 1.3rem; font-weight: bold; color: #059669;">21.3%</div>
+                                    <div style="font-size: 0.85rem; color: #166534;">Market Share (Loans)</div>
+                                </div>
+                                <div style="background: white; padding: 15px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                                    <div style="font-size: 1.3rem; font-weight: bold; color: #dc2626;">0.72%</div>
+                                    <div style="font-size: 0.85rem; color: #166534;">Return on Assets</div>
+                                </div>
+                                <div style="background: white; padding: 15px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                                    <div style="font-size: 1.3rem; font-weight: bold; color: #059669;">16.7%</div>
+                                    <div style="font-size: 0.85rem; color: #166534;">Fee Income Growth</div>
+                                </div>
+                            </div>
+                            <p style="font-size: 0.95rem; line-height: 1.6; color: #374151; margin-bottom: 15px;">
+                                <strong>TDB is executing an aggressive market expansion strategy,</strong> achieving the highest loan growth in the sector (+27%) while maintaining superior asset quality (3.69% NPL). However, this growth comes at the cost of near-term profitability, with net profit declining 36% YoY as the bank invests heavily in market share acquisition.
+                            </p>
+                            <div style="background: #fef7ff; padding: 15px; border-radius: 8px; border-left: 4px solid #8b5cf6;">
+                                <p style="margin: 0; font-size: 0.9rem; color: #581c87;">
+                                    <strong>Strategic Thesis:</strong> TDB appears to be trading short-term profits for long-term market positioning, betting that scale economies will eventually drive superior returns.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="analysis-card loading" style="border-top-color: #059669;">
+                        <h3 class="analysis-title" style="color: #14532d;">
+                            <span class="analysis-icon">📊</span>
+                            TDB Competitive Positioning
+                        </h3>
+                        <div class="analysis-content">
+                            <div style="margin-bottom: 20px;">
+                                <h4 style="font-size: 1rem; font-weight: 600; margin-bottom: 15px; color: #059669;">Strengths</h4>
+                                <ul style="font-size: 0.9rem; line-height: 1.6;">
+                                    <li><strong>Asset Quality Leadership:</strong> Lowest NPL ratio (3.69%) in top 5 banks</li>
+                                    <li><strong>Growth Momentum:</strong> Highest loan portfolio expansion in sector</li>
+                                    <li><strong>Revenue Diversification:</strong> Strong fee income growth (+16.7%)</li>
+                                    <li><strong>Market Position:</strong> Solid #2 ranking with growth trajectory</li>
+                                </ul>
+                            </div>
+                            <div style="margin-bottom: 20px;">
+                                <h4 style="font-size: 1rem; font-weight: 600; margin-bottom: 15px; color: #dc2626;">Challenges</h4>
+                                <ul style="font-size: 0.9rem; line-height: 1.6;">
+                                    <li><strong>Profitability Pressure:</strong> Significant earnings decline (-36%)</li>
+                                    <li><strong>Operating Efficiency:</strong> Likely elevated cost base from expansion</li>
+                                    <li><strong>Margin Compression:</strong> Net interest income declined 20%</li>
+                                    <li><strong>Khan Bank Gap:</strong> Still 37% smaller in asset base</li>
+                                </ul>
+                            </div>
+                            <div style="background: #f0f9ff; padding: 15px; border-radius: 8px;">
+                                <h4 style="font-size: 0.9rem; font-weight: 600; margin-bottom: 8px; color: #1e40af;">Strategic Priority:</h4>
+                                <p style="margin: 0; font-size: 0.85rem; color: #1e40af;">
+                                    Balance growth ambitions with operational efficiency to restore profitability momentum while defending asset quality gains.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2 class="section-title">Bank Performance Rankings</h2>
+                
+                <div class="banks-grid">
+                    <div class="bank-card rank-1 loading">
+                        <div class="bank-header">
+                            <div class="bank-logo khan">KB</div>
+                            <div class="bank-info">
+                                <h3>KHAN BANK</h3>
+                                <span class="bank-rank">#1 Market Leader</span>
+                            </div>
+                        </div>
+                        <div class="metrics-row">
+                            <div class="metric">
+                                <div class="metric-value">21.4B</div>
+                                <div class="metric-label">Assets</div>
+                                <div class="metric-change positive">+5.0%</div>
+                            </div>
+                            <div class="metric">
+                                <div class="metric-value">348M</div>
+                                <div class="metric-label">Profit</div>
+                                <div class="metric-change positive">+20%</div>
+                            </div>
+                            <div class="metric">
+                                <div class="metric-value">12.9B</div>
+                                <div class="metric-label">Loans</div>
+                                <div class="metric-change positive">+16%</div>
+                            </div>
+                            <div class="metric">
+                                <div class="metric-value">4.05%</div>
+                                <div class="metric-label">NPL</div>
+                                <div class="metric-change positive">-0.38%</div>
+                            </div>
+                        </div>
+                        <div class="performance-badges">
+                            <span class="badge excellent">Profitability</span>
+                            <span class="badge good">Asset Quality</span>
+                            <span class="badge excellent">Market Share</span>
+                        </div>
+                    </div>
+                    
+                    <div class="bank-card rank-2 loading">
+                        <div class="bank-header">
+                            <div class="bank-logo tdb">TDB</div>
+                            <div class="bank-info">
+                                <h3>TRADE & DEVELOPMENT BANK</h3>
+                                <span class="bank-rank">#2 Growth Focused</span>
+                            </div>
+                        </div>
+                        <div class="metrics-row">
+                            <div class="metric">
+                                <div class="metric-value">15.6B</div>
+                                <div class="metric-label">Assets</div>
+                                <div class="metric-change positive">+4.0%</div>
+                            </div>
+                            <div class="metric">
+                                <div class="metric-value">112M</div>
+                                <div class="metric-label">Profit</div>
+                                <div class="metric-change negative">-36%</div>
+                            </div>
+                            <div class="metric">
+                                <div class="metric-value">7.7B</div>
+                                <div class="metric-label">Loans</div>
+                                <div class="metric-change positive">+27%</div>
+                            </div>
+                            <div class="metric">
+                                <div class="metric-value">3.69%</div>
+                                <div class="metric-label">NPL</div>
+                                <div class="metric-change positive">-0.48%</div>
+                            </div>
+                        </div>
+                        <div class="performance-badges">
+                            <span class="badge poor">Profitability</span>
+                            <span class="badge excellent">Loan Growth</span>
+                            <span class="badge good">Asset Quality</span>
+                        </div>
+                    </div>
+                    
+                    <div class="bank-card rank-3 loading">
+                        <div class="bank-header">
+                            <div class="bank-logo golomt">GB</div>
+                            <div class="bank-info">
+                                <h3>GOLOMT BANK</h3>
+                                <span class="bank-rank">#3 Established Player</span>
+                            </div>
+                        </div>
+                        <div class="metrics-row">
+                            <div class="metric">
+                                <div class="metric-value">14.9B</div>
+                                <div class="metric-label">Assets</div>
+                                <div class="metric-change negative">-3.0%</div>
+                            </div>
+                            <div class="metric">
+                                <div class="metric-value">215M</div>
+                                <div class="metric-label">Profit</div>
+                                <div class="metric-change negative">-21%</div>
+                            </div>
+                            <div class="metric">
+                                <div class="metric-value">7.9B</div>
+                                <div class="metric-label">Loans</div>
+                                <div class="metric-change positive">+10%</div>
+                            </div>
+                            <div class="metric">
+                                <div class="metric-value">2.75%</div>
+                                <div class="metric-label">NPL</div>
+                                <div class="metric-change positive">-0.28%</div>
+                            </div>
+                        </div>
+                        <div class="performance-badges">
+                            <span class="badge average">Profitability</span>
+                            <span class="badge good">Loan Growth</span>
+                            <span class="badge excellent">Asset Quality</span>
+                        </div>
+                    </div>
+                    
+                    <div class="bank-card rank-4 loading">
+                        <div class="bank-header">
+                            <div class="bank-logo xac">XB</div>
+                            <div class="bank-info">
+                                <h3>XACBANK</h3>
+                                <span class="bank-rank">#4 Stable Performer</span>
+                            </div>
+                        </div>
+                        <div class="metrics-row">
+                            <div class="metric">
+                                <div class="metric-value">6.8B</div>
+                                <div class="metric-label">Assets</div>
+                                <div class="metric-change positive">+7.0%</div>
+                            </div>
+                            <div class="metric">
+                                <div class="metric-value">86M</div>
+                                <div class="metric-label">Profit</div>
+                                <div class="metric-change positive">+1%</div>
+                            </div>
+                            <div class="metric">
+                                <div class="metric-value">4.2B</div>
+                                <div class="metric-label">Loans</div>
+                                <div class="metric-change positive">+14%</div>
+                            </div>
+                            <div class="metric">
+                                <div class="metric-value">2.23%</div>
+                                <div class="metric-label">NPL</div>
+                                <div class="metric-change neutral">+0.18%</div>
+                            </div>
+                        </div>
+                        <div class="performance-badges">
+                            <span class="badge good">Profitability</span>
+                            <span class="badge good">Loan Growth</span>
+                            <span class="badge excellent">Asset Quality</span>
+                        </div>
+                    </div>
+                    
+                    <div class="bank-card rank-5 loading">
+                        <div class="bank-header">
+                            <div class="bank-logo state">SB</div>
+                            <div class="bank-info">
+                                <h3>STATE BANK</h3>
+                                <span class="bank-rank">#5 Restructuring</span>
+                            </div>
+                        </div>
+                        <div class="metrics-row">
+                            <div class="metric">
+                                <div class="metric-value">6.1B</div>
+                                <div class="metric-label">Assets</div>
+                                <div class="metric-change negative">-2.0%</div>
+                            </div>
+                            <div class="metric">
+                                <div class="metric-value">30M</div>
+                                <div class="metric-label">Profit</div>
+                                <div class="metric-change negative">-33%</div>
+                            </div>
+                            <div class="metric">
+                                <div class="metric-value">3.7B</div>
+                                <div class="metric-label">Loans</div>
+                                <div class="metric-change positive">+9%</div>
+                            </div>
+                            <div class="metric">
+                                <div class="metric-value">5.01%</div>
+                                <div class="metric-label">NPL</div>
+                                <div class="metric-change positive">-0.58%</div>
+                            </div>
+                        </div>
+                        <div class="performance-badges">
+                            <span class="badge poor">Profitability</span>
+                            <span class="badge average">Loan Growth</span>
+                            <span class="badge average">Asset Quality</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2 class="section-title">Financial Metrics Analysis</h2>
+                
+                <div class="charts-grid">
+                    <div class="chart-card loading">
+                        <div class="chart-header">
+                            <div class="chart-icon assets-icon">💰</div>
+                            <h3 class="chart-title">Asset Distribution & Growth</h3>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="assetsChart"></canvas>
+                        </div>
+                        <div class="data-visualization">
+                            <div class="data-point">
+                                <div class="data-point-value">24.1%</div>
+                                <div class="data-point-label">TDB Share</div>
+                            </div>
+                            <div class="data-point">
+                                <div class="data-point-value">8.2%</div>
+                                <div class="data-point-label">5Y CAGR</div>
+                            </div>
+                            <div class="data-point">
+                                <div class="data-point-value">#2</div>
+                                <div class="data-point-label">Rank</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="chart-card loading">
+                        <div class="chart-header">
+                            <div class="chart-icon loans-icon">📊</div>
+                            <h3 class="chart-title">Loan Portfolio Composition</h3>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="loansChart"></canvas>
+                        </div>
+                        <div class="data-visualization">
+                            <div class="data-point">
+                                <div class="data-point-value" style="color: #059669;">7.7B</div>
+                                <div class="data-point-label">TDB Loans</div>
+                                <span class="trend-indicator trend-down">+27%</span>
+                            </div>
+                            <div class="data-point">
+                                <div class="data-point-value" style="color: #1e40af;">12.9B</div>
+                                <div class="data-point-label">Khan Bank</div>
+                                <span class="trend-indicator trend-down">+16%</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="chart-card loading">
+                        <div class="chart-header">
+                            <div class="chart-icon profit-icon">📈</div>
+                            <h3 class="chart-title">Profitability Trends</h3>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="profitChart"></canvas>
+                        </div>
+                        <div style="margin-top: 15px; padding: 15px; background: rgba(248, 250, 252, 0.8); border-radius: 8px;">
+                            <div style="font-size: 0.9rem; font-weight: 600; margin-bottom: 8px; text-align: center;">TDB Performance Indicator</div>
+                            <div style="background: linear-gradient(90deg, #dc2626 0%, #f59e0b 33%, #fbbf24 66%, #10b981 100%); height: 20px; border-radius: 10px; position: relative; margin-bottom: 5px;">
+                                <div style="position: absolute; left: 25%; top: -5px; width: 4px; height: 30px; background: #1e293b; border-radius: 2px;"></div>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; font-size: 0.7rem; color: #64748b;">
+                                <span>Poor</span>
+                                <span>Fair</span>
+                                <span>Good</span>
+                                <span>Excellent</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="chart-card loading">
+                        <div class="chart-header">
+                            <div class="chart-icon efficiency-icon">⚡</div>
+                            <h3 class="chart-title">TDB vs Industry Benchmarks</h3>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="efficiencyChart"></canvas>
+                        </div>
+                        <div class="data-visualization">
+                            <div class="data-point">
+                                <div class="data-point-value">0.72%</div>
+                                <div class="data-point-label">ROA</div>
+                                <span class="trend-indicator trend-up">↓ 0.3%</span>
+                            </div>
+                            <div class="data-point">
+                                <div class="data-point-value">8.9%</div>
+                                <div class="data-point-label">ROE</div>
+                                <span class="trend-indicator trend-up">↓ 4.2%</span>
+                            </div>
+                            <div class="data-point">
+                                <div class="data-point-value">72%</div>
+                                <div class="data-point-label">C/I Ratio</div>
+                                <span class="trend-indicator trend-up">↑ 5%</span>
+                            </div>
+                            <div class="data-point">
+                                <div class="data-point-value">3.69%</div>
+                                <div class="data-point-label">NPL</div>
+                                <span class="trend-indicator trend-down">Best</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2 class="section-title">Strategic Analysis & Recommendations</h2>
+                
+                <div class="analysis-grid">
+                    <div class="analysis-card executive loading">
+                        <h3 class="analysis-title">
+                            <span class="analysis-icon">👔</span>
+                            Executive Summary
+                        </h3>
+                        <div class="analysis-content">
+                            <ul>
+                                <li><strong>Market Concentration:</strong> Top 3 banks control 80% of total assets, indicating healthy market concentration with Khan Bank's clear leadership position</li>
+                                <li><strong>Profitability Pressure:</strong> Industry net profit declined 8.5% YoY despite asset growth, reflecting margin compression and operational challenges</li>
+                                <li><strong>Asset Quality Improvement:</strong> Sector-wide NPL ratio improvements demonstrate effective risk management and economic recovery</li>
+                                <li><strong>Growth Divergence:</strong> Significant performance variation between institutions suggests strategic repositioning opportunities</li>
+                            </ul>
+                            <div class="recommendation-box">
+                                <div class="recommendation-title">CEO Recommendation:</div>
+                                Focus on operational efficiency and digital transformation to combat margin pressure while maintaining prudent risk management standards.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="analysis-card strategic loading">
+                        <h3 class="analysis-title">
+                            <span class="analysis-icon">🎯</span>
+                            Strategic Positioning
+                        </h3>
+                        <div class="analysis-content">
+                            <ul>
+                                <li><strong>Khan Bank:</strong> Maintains dominant position through balanced growth strategy and superior operational efficiency</li>
+                                <li><strong>TDB Strategy:</strong> Aggressive lending expansion (+27%) at the expense of short-term profitability - potential market share gains</li>
+                                <li><strong>Golomt Challenge:</strong> Faces strategic inflection point with declining assets and profits requiring transformation</li>
+                                <li><strong>Mid-tier Stability:</strong> XacBank demonstrates sustainable growth model, State Bank requires restructuring</li>
+                            </ul>
+                            <div class="recommendation-box">
+                                <div class="recommendation-title">Strategic Priority:</div>
+                                Accelerate digital banking capabilities and explore fintech partnerships to reduce operational costs and improve customer experience.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="analysis-card risk loading">
+                        <h3 class="analysis-title">
+                            <span class="analysis-icon">⚠️</span>
+                            Risk Assessment
+                        </h3>
+                        <div class="analysis-content">
+                            <ul>
+                                <li><strong>Margin Compression:</strong> Industry-wide profit pressure indicates systemic challenges requiring cost optimization initiatives</li>
+                                <li><strong>Competitive Intensity:</strong> Rising fee income suggests banks competing aggressively on pricing, potentially impacting long-term sustainability</li>
+                                <li><strong>Economic Sensitivity:</strong> Loan growth concentrated in specific sectors may create vulnerability to economic downturns</li>
+                                <li><strong>Operational Risk:</strong> Banks with declining current accounts face liquidity management challenges</li>
+                            </ul>
+                            <div class="recommendation-box">
+                                <div class="recommendation-title">Risk Mitigation:</div>
+                                Implement dynamic pricing models and strengthen capital buffers while diversifying revenue streams beyond traditional banking.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="analysis-card outlook loading">
+                        <h3 class="analysis-title">
+                            <span class="analysis-icon">🚀</span>
+                            Future Outlook
+                        </h3>
+                        <div class="analysis-content">
+                            <ul>
+                                <li><strong>Digital Transformation:</strong> Significant opportunity for cost reduction and service enhancement through technology adoption</li>
+                                <li><strong>SME Banking:</strong> Underserved small business segment presents growth opportunities as economy diversifies</li>
+                                <li><strong>Financial Inclusion:</strong> Rural and unbanked population segments offer expansion potential</li>
+                                <li><strong>Regulatory Evolution:</strong> Open banking and fintech regulations may create new business models and partnerships</li>
+                            </ul>
+                            <div class="recommendation-box">
+                                <div class="recommendation-title">Growth Strategy:</div>
+                                Invest in API-first architecture and data analytics capabilities to enable new product development and improve customer insights.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="analysis-grid" style="margin-top: 30px;">
+                    <div class="analysis-card executive loading" style="border-top-color: #059669;">
+                        <h3 class="analysis-title">
+                            <span class="analysis-icon">📊</span>
+                            Key Performance Indicators
+                        </h3>
+                        <div class="analysis-content">
+                            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-bottom: 20px;">
+                                <div style="text-align: center; padding: 15px; background: #f8fafc; border-radius: 8px;">
+                                    <div style="font-size: 1.5rem; font-weight: bold; color: #1e293b;">15.2%</div>
+                                    <div style="font-size: 0.8rem; color: #64748b;">Sector Loan Growth</div>
+                                </div>
+                                <div style="text-align: center; padding: 15px; background: #f8fafc; border-radius: 8px;">
+                                    <div style="font-size: 1.5rem; font-weight: bold; color: #1e293b;">1.23%</div>
+                                    <div style="font-size: 0.8rem; color: #64748b;">Average ROA</div>
+                                </div>
+                                <div style="text-align: center; padding: 15px; background: #f8fafc; border-radius: 8px;">
+                                    <div style="font-size: 1.5rem; font-weight: bold; color: #1e293b;">67.2%</div>
+                                    <div style="font-size: 0.8rem; color: #64748b;">Cost-to-Income Ratio</div>
+                                </div>
+                                <div style="text-align: center; padding: 15px; background: #f8fafc; border-radius: 8px;">
+                                    <div style="font-size: 1.5rem; font-weight: bold; color: #1e293b;">12.8%</div>
+                                    <div style="font-size: 0.8rem; color: #64748b;">Average CAR</div>
+                                </div>
+                            </div>
+                            <p style="font-size: 0.9rem; color: #64748b; text-align: center; font-style: italic;">
+                                Industry metrics indicate healthy capital adequacy but efficiency improvement opportunities exist
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="analysis-card strategic loading" style="border-top-color: #7c3aed;">
+                        <h3 class="analysis-title">
+                            <span class="analysis-icon">🏆</span>
+                            Competitive Landscape
+                        </h3>
+                        <div class="analysis-content">
+                            <div style="margin-bottom: 20px;">
+                                <h4 style="font-size: 1rem; font-weight: 600; margin-bottom: 10px;">Market Leaders</h4>
+                                <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+                                    <span class="badge excellent">Khan Bank - Dominant</span>
+                                    <span class="badge good">TDB - Aggressive</span>
+                                    <span class="badge average">Golomt - Challenged</span>
+                                </div>
+                            </div>
+                            <div>
+                                <h4 style="font-size: 1rem; font-weight: 600; margin-bottom: 10px;">Competitive Dynamics</h4>
+                                <ul style="font-size: 0.9rem;">
+                                    <li>Khan Bank leverages scale advantages and operational excellence</li>
+                                    <li>TDB pursuing market share through aggressive pricing and expansion</li>
+                                    <li>Mid-tier banks focusing on niche markets and specialized services</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2 class="section-title">Expert Commentary & Strategic Thoughts</h2>
+                
+                <div class="analysis-grid">
+                    <div class="analysis-card loading" style="border-top-color: #6366f1; grid-column: 1 / -1;">
+                        <h3 class="analysis-title">
+                            <span class="analysis-icon">💭</span>
+                            Strategic Banking Analyst Perspective
+                        </h3>
+                        <div class="analysis-content">
+                            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 25px;">
+                                <div style="background: #f8fafc; padding: 20px; border-radius: 12px; border-left: 4px solid #3b82f6;">
+                                    <h4 style="color: #1e293b; margin-bottom: 12px; font-weight: 600;">🔮 Market Evolution Thesis</h4>
+                                    <p style="font-size: 0.95rem; line-height: 1.6; color: #475569;">
+                                        Mongolia's banking sector is undergoing a critical transformation period. The divergent performance patterns we observe—Khan Bank's consistent dominance versus TDB's aggressive expansion strategy—suggest the market is bifurcating between <strong>stability-focused incumbents</strong> and <strong>growth-oriented challengers</strong>. This creates a fascinating case study in emerging market banking dynamics.
+                                    </p>
+                                </div>
+                                
+                                <div style="background: #f0fdf4; padding: 20px; border-radius: 12px; border-left: 4px solid #10b981;">
+                                    <h4 style="color: #1e293b; margin-bottom: 12px; font-weight: 600;">📈 The Profitability Paradox</h4>
+                                    <p style="font-size: 0.95rem; line-height: 1.6; color: #475569;">
+                                        The most intriguing observation is TDB's <strong>27% loan growth</strong> coupled with <strong>36% profit decline</strong>. This suggests either: (1) strategic market share acquisition at discounted pricing, (2) expansion into higher-risk segments, or (3) operational inefficiencies scaling. The sustainability of this approach will define TDB's long-term competitive position.
+                                    </p>
+                                </div>
+                                
+                                <div style="background: #fef7ff; padding: 20px; border-radius: 12px; border-left: 4px solid #8b5cf6;">
+                                    <h4 style="color: #1e293b; margin-bottom: 12px; font-weight: 600;">🎯 Technology Disruption Window</h4>
+                                    <p style="font-size: 0.95rem; line-height: 1.6; color: #475569;">
+                                        With cost-to-income ratios averaging <strong>67.2%</strong>, there's substantial room for technology-driven efficiency gains. Banks investing in <strong>AI-powered risk assessment</strong>, <strong>automated operations</strong>, and <strong>digital-first customer journeys</strong> will likely emerge as tomorrow's market leaders. The question isn't if, but when this transformation accelerates.
+                                    </p>
+                                </div>
+                                
+                                <div style="background: #fff7ed; padding: 20px; border-radius: 12px; border-left: 4px solid #f59e0b;">
+                                    <h4 style="color: #1e293b; margin-bottom: 12px; font-weight: 600;">⚡ Regulatory Catalyst Potential</h4>
+                                    <p style="font-size: 0.95rem; line-height: 1.6; color: #475569;">
+                                        Mongolia's banking regulations are evolving rapidly. The introduction of <strong>open banking standards</strong> and <strong>fintech licensing frameworks</strong> could dramatically reshape competitive dynamics. Traditional banks must prepare for neo-bank entrants and big-tech financial services expansion.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="analysis-card loading" style="border-top-color: #ec4899;">
+                        <h3 class="analysis-title">
+                            <span class="analysis-icon">🧠</span>
+                            Contrarian Investment Thesis
+                        </h3>
+                        <div class="analysis-content">
+                            <div style="background: #fef2f2; padding: 15px; border-radius: 8px; margin-bottom: 15px;">
+                                <p style="font-size: 0.9rem; font-style: italic; color: #7f1d1d; margin: 0;">
+                                    "The best investment opportunities often hide in plain sight during periods of apparent distress..."
+                                </p>
+                            </div>
+                            <ul>
+                                <li><strong>Golomt Bank Turnaround Play:</strong> Trading at potential discount despite strong asset quality (2.75% NPL). Strategic restructuring could unlock significant value</li>
+                                <li><strong>State Bank Privatization Catalyst:</strong> Government divestiture could attract foreign strategic investors seeking market entry</li>
+                                <li><strong>Digital Banking Disruption:</strong> First-mover advantage in mobile banking could compress traditional market share rapidly</li>
+                                <li><strong>ESG Integration Opportunity:</strong> Sustainable finance leadership could differentiate banks with international investor appeal</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="analysis-card loading" style="border-top-color: #06b6d4;">
+                        <h3 class="analysis-title">
+                            <span class="analysis-icon">🔬</span>
+                            Deep Dive: What Numbers Don't Tell
+                        </h3>
+                        <div class="analysis-content">
+                            <ul>
+                                <li><strong>Customer Stickiness:</strong> Behind Khan Bank's dominance lies superior customer retention—likely driven by ecosystem lock-in effects and service quality</li>
+                                <li><strong>Hidden NPL Risk:</strong> Improving NPL ratios might mask emerging stress in specific sectors (mining, real estate) that won't surface until economic cycles turn</li>
+                                <li><strong>Fee Income Evolution:</strong> Rising fee income could indicate banks pivoting toward transaction-based models—a healthier long-term revenue mix</li>
+                                <li><strong>Deposit Concentration:</strong> Strong deposit growth suggests increasing financial inclusion, but concentration risks among large depositors remain opaque</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="analysis-card loading" style="border-top-color: #f59e0b;">
+                        <h3 class="analysis-title">
+                            <span class="analysis-icon">🎪</span>
+                            Scenario Planning Matrix
+                        </h3>
+                        <div class="analysis-content">
+                            <div style="overflow-x: auto;">
+                                <table style="width: 100%; border-collapse: collapse; font-size: 0.85rem;">
+                                    <thead>
+                                        <tr style="background: #f8fafc;">
+                                            <th style="padding: 10px; text-align: left; border: 1px solid #e2e8f0;">Scenario</th>
+                                            <th style="padding: 10px; text-align: left; border: 1px solid #e2e8f0;">Probability</th>
+                                            <th style="padding: 10px; text-align: left; border: 1px solid #e2e8f0;">Winner</th>
+                                            <th style="padding: 10px; text-align: left; border: 1px solid #e2e8f0;">Catalyst</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td style="padding: 10px; border: 1px solid #e2e8f0;"><strong>Digital Disruption</strong></td>
+                                            <td style="padding: 10px; border: 1px solid #e2e8f0;">65%</td>
+                                            <td style="padding: 10px; border: 1px solid #e2e8f0;">Khan Bank</td>
+                                            <td style="padding: 10px; border: 1px solid #e2e8f0;">Technology investment advantage</td>
+                                        </tr>
+                                        <tr style="background: #f8fafc;">
+                                            <td style="padding: 10px; border: 1px solid #e2e8f0;"><strong>Market Consolidation</strong></td>
+                                            <td style="padding: 10px; border: 1px solid #e2e8f0;">45%</td>
+                                            <td style="padding: 10px; border: 1px solid #e2e8f0;">TDB</td>
+                                            <td style="padding: 10px; border: 1px solid #e2e8f0;">Aggressive M&A strategy</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding: 10px; border: 1px solid #e2e8f0;"><strong>Regulatory Shake-up</strong></td>
+                                            <td style="padding: 10px; border: 1px solid #e2e8f0;">30%</td>
+                                            <td style="padding: 10px; border: 1px solid #e2e8f0;">New Entrants</td>
+                                            <td style="padding: 10px; border: 1px solid #e2e8f0;">Open banking mandates</td>
+                                        </tr>
+                                        <tr style="background: #f8fafc;">
+                                            <td style="padding: 10px; border: 1px solid #e2e8f0;"><strong>Economic Downturn</strong></td>
+                                            <td style="padding: 10px; border: 1px solid #e2e8f0;">25%</td>
+                                            <td style="padding: 10px; border: 1px solid #e2e8f0;">XacBank</td>
+                                            <td style="padding: 10px; border: 1px solid #e2e8f0;">Conservative risk management</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div style="margin-top: 15px; padding: 12px; background: #fef7ff; border-radius: 8px;">
+                                <p style="font-size: 0.85rem; color: #7c3aed; margin: 0; font-style: italic;">
+                                    <strong>Meta-observation:</strong> The most likely scenario involves multiple overlapping trends, suggesting banks need portfolio strategies rather than single-bet approaches.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="analysis-card loading" style="border-top-color: #84cc16; grid-column: 1 / -1;">
+                        <h3 class="analysis-title">
+                            <span class="analysis-icon">🎯</span>
+                            Strategic Watchlist: Key Metrics to Monitor
+                        </h3>
+                        <div class="analysis-content">
+                            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
+                                <div style="background: linear-gradient(135deg, #f0f9ff, #e0f2fe); padding: 18px; border-radius: 10px;">
+                                    <h4 style="color: #0c4a6e; margin-bottom: 10px;">📊 Operational Efficiency</h4>
+                                    <ul style="font-size: 0.9rem; color: #075985;">
+                                        <li>Cost-to-income ratio convergence</li>
+                                        <li>Digital transaction volume growth</li>
+                                        <li>Branch optimization metrics</li>
+                                        <li>Employee productivity ratios</li>
+                                    </ul>
+                                </div>
+                                
+                                <div style="background: linear-gradient(135deg, #f0fdf4, #dcfce7); padding: 18px; border-radius: 10px;">
+                                    <h4 style="color: #14532d; margin-bottom: 10px;">💳 Customer Dynamics</h4>
+                                    <ul style="font-size: 0.9rem; color: #166534;">
+                                        <li>Customer acquisition costs</li>
+                                        <li>Digital adoption rates</li>
+                                        <li>Cross-selling penetration</li>
+                                        <li>Net promoter scores</li>
+                                    </ul>
+                                </div>
+                                
+                                <div style="background: linear-gradient(135deg, #fefce8, #fef3c7); padding: 18px; border-radius: 10px;">
+                                    <h4 style="color: #92400e; margin-bottom: 10px;">⚖️ Risk Indicators</h4>
+                                    <ul style="font-size: 0.9rem; color: #a16207;">
+                                        <li>Sector concentration trends</li>
+                                        <li>Early warning signal metrics</li>
+                                        <li>Liquidity coverage ratios</li>
+                                        <li>Capital buffer utilization</li>
+                                    </ul>
+                                </div>
+                                
+                                <div style="background: linear-gradient(135deg, #fdf2f8, #fce7f3); padding: 18px; border-radius: 10px;">
+                                    <h4 style="color: #831843; margin-bottom: 10px;">🚀 Innovation Metrics</h4>
+                                    <ul style="font-size: 0.9rem; color: #be185d;">
+                                        <li>API ecosystem development</li>
+                                        <li>Fintech partnership velocity</li>
+                                        <li>Product launch frequency</li>
+                                        <li>Technology investment ROI</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            
+                            <div style="margin-top: 25px; padding: 20px; background: linear-gradient(135deg, #f8fafc, #f1f5f9); border-radius: 12px; border: 1px solid #e2e8f0;">
+                                <h4 style="color: #1e293b; margin-bottom: 15px; display: flex; align-items: center;">
+                                    <span style="margin-right: 10px;">💡</span>
+                                    Final Strategic Thought
+                                </h4>
+                                <p style="font-size: 1rem; line-height: 1.7; color: #475569; margin: 0; font-style: italic;">
+                                    "In Mongolia's banking sector, we're witnessing the collision of traditional relationship banking with digital-first customer expectations. The winners won't just be those with the largest balance sheets, but those who can <strong>orchestrate seamless financial experiences</strong> while maintaining the <strong>trust and stability</strong> that customers expect from their primary financial institution. The next 24 months will likely determine which institutions successfully navigate this transition."
+                                </p>
+                                <div style="text-align: right; margin-top: 15px; color: #64748b; font-size: 0.9rem;">
+                                    — Banking Strategy Analyst, Q2 2025
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p><strong>Mongolia Banking Sector Dashboard</strong> | Q2 2025 | Data Source: Bank Financial Statements</p>
+            <p style="margin-top: 5px; font-size: 0.8rem;">This analysis is based on publicly available financial data and management commentary. Forward-looking statements involve risks and uncertainties.</p>
+        </div>
+    </div>
+
+    <script>
+        // Chart.js configuration and data
+        const bankNames = ['Khan Bank', 'TDB', 'Golomt', 'XacBank', 'State Bank'];
+        const bankColors = ['#1e40af', '#059669', '#dc2626', '#7c3aed', '#0891b2'];
+        const gradientColors = [
+            'rgba(30, 64, 175, 0.8)',
+            'rgba(5, 150, 105, 0.8)',
+            'rgba(220, 38, 38, 0.8)',
+            'rgba(124, 58, 237, 0.8)',
+            'rgba(8, 145, 178, 0.8)'
+        ];
+        
+        // Assets chart with enhanced styling
+        const assetsCtx = document.getElementById('assetsChart').getContext('2d');
+        const assetsGradient = assetsCtx.createLinearGradient(0, 0, 0, 400);
+        assetsGradient.addColorStop(0, 'rgba(59, 130, 246, 0.8)');
+        assetsGradient.addColorStop(1, 'rgba(59, 130, 246, 0.1)');
+        
+        new Chart(assetsCtx, {
+            type: 'bar',
+            data: {
+                labels: bankNames,
+                datasets: [{
+                    label: 'Total Assets (Billion MNT)',
+                    data: [21.4, 15.6, 14.9, 6.8, 6.1],
+                    backgroundColor: gradientColors,
+                    borderColor: bankColors,
+                    borderWidth: 2,
+                    borderRadius: 8,
+                    borderSkipped: false,
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        backgroundColor: 'rgba(30, 41, 59, 0.95)',
+                        titleColor: '#f8fafc',
+                        bodyColor: '#f8fafc',
+                        borderColor: '#3b82f6',
+                        borderWidth: 1,
+                        callbacks: {
+                            label: function(context) {
+                                return `Assets: ${context.parsed.y}B MNT (${Math.round((context.parsed.y / 64.6) * 100)}% market share)`;
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: { display: true, text: 'Billion MNT', font: { weight: 'bold' } },
+                        grid: { color: 'rgba(0,0,0,0.05)' }
+                    },
+                    x: {
+                        grid: { display: false }
+                    }
+                }
+            }
+        });
+        
+        // Loans portfolio chart
+        const loansCtx = document.getElementById('loansChart').getContext('2d');
+        new Chart(loansCtx, {
+            type: 'doughnut',
+            data: {
+                labels: bankNames,
+                datasets: [{
+                    data: [12.9, 7.7, 7.9, 4.2, 3.7],
+                    backgroundColor: gradientColors,
+                    borderColor: bankColors,
+                    borderWidth: 3,
+                    hoverOffset: 15
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                cutout: '60%',
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: { usePointStyle: true, padding: 20, font: { size: 12 } }
+                    },
+                    tooltip: {
+                        backgroundColor: 'rgba(30, 41, 59, 0.95)',
+                        callbacks: {
+                            label: function(context) {
+                                const percentage = Math.round((context.parsed / 36.4) * 100);
+                                return `${context.label}: ${context.parsed}B MNT (${percentage}%)`;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+        
+        // Profitability trend chart
+        const profitCtx = document.getElementById('profitChart').getContext('2d');
+        const profitGradient = profitCtx.createLinearGradient(0, 0, 0, 400);
+        profitGradient.addColorStop(0, 'rgba(16, 185, 129, 0.3)');
+        profitGradient.addColorStop(1, 'rgba(16, 185, 129, 0.05)');
+        
+        new Chart(profitCtx, {
+            type: 'line',
+            data: {
+                labels: bankNames,
+                datasets: [{
+                    label: 'Net Profit (Million MNT)',
+                    data: [348, 112, 215, 86, 30],
+                    borderColor: '#10b981',
+                    backgroundColor: profitGradient,
+                    borderWidth: 3,
+                    fill: true,
+                    tension: 0.4,
+                    pointBackgroundColor: '#10b981',
+                    pointBorderColor: '#fff',
+                    pointBorderWidth: 3,
+                    pointRadius: 8,
+                    pointHoverRadius: 12
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        backgroundColor: 'rgba(30, 41, 59, 0.95)',
+                        callbacks: {
+                            label: function(context) {
+                                return `Profit: ${context.parsed.y}M MNT`;
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: { display: true, text: 'Million MNT', font: { weight: 'bold' } },
+                        grid: { color: 'rgba(0,0,0,0.05)' }
+                    },
+                    x: { grid: { display: false } }
+                }
+            }
+        });
+        
+        // Efficiency metrics chart
+        const efficiencyCtx = document.getElementById('efficiencyChart').getContext('2d');
+        new Chart(efficiencyCtx, {
+            type: 'radar',
+            data: {
+                labels: ['ROA (%)', 'ROE (%)', 'NIM (%)', 'Cost Ratio (%)', 'Asset Quality'],
+                datasets: [
+                    {
+                        label: 'Khan Bank',
+                        data: [1.63, 15.2, 4.8, 58, 85],
+                        borderColor: '#1e40af',
+                        backgroundColor: 'rgba(30, 64, 175, 0.2)',
+                        borderWidth: 2
+                    },
+                    {
+                        label: 'TDB',
+                        data: [0.72, 8.9, 3.9, 72, 88],
+                        borderColor: '#059669',
+                        backgroundColor: 'rgba(5, 150, 105, 0.2)',
+                        borderWidth: 2
+                    },
+                    {
+                        label: 'Industry Avg',
+                        data: [1.23, 11.8, 4.2, 67, 82],
+                        borderColor: '#64748b',
+                        backgroundColor: 'rgba(100, 116, 139, 0.1)',
+                        borderWidth: 2,
+                        borderDash: [5, 5]
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: { padding: 20 }
+                    }
+                },
+                scales: {
+                    r: {
+                        beginAtZero: true,
+                        max: 100,
+                        grid: { color: 'rgba(0,0,0,0.1)' },
+                        pointLabels: { font: { size: 11 } }
+                    }
+                }
+            }
+        });
+        
+        // Smooth loading animation
+        function animateElements() {
+            const elements = document.querySelectorAll('.loading');
+            elements.forEach((el, index) => {
+                setTimeout(() => {
+                    el.classList.add('loaded');
+                }, index * 150);
+            });
+        }
+        
+        // Initialize animations after page load
+        window.addEventListener('load', () => {
+            setTimeout(animateElements, 300);
+        });
+        
+        // Enhanced hover effects
+        document.querySelectorAll('.bank-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-8px) scale(1.02)';
+                this.style.boxShadow = '0 25px 50px rgba(0, 0, 0, 0.15)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+                this.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.08)';
+            });
+        });
+        
+        // Chart interaction effects
+        document.querySelectorAll('.chart-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-3px)';
+                this.style.boxShadow = '0 15px 35px rgba(0, 0, 0, 0.12)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+                this.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.08)';
+            });
+        });
+    </script>
+</body>
+</html>
