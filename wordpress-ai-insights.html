@@ -1,0 +1,244 @@
+i><a href="#">NLP</a></li>
+                                <li><a href="#">AI Ethics</a></li>
+                            </ul>
+                        </div>
+
+                        <!-- Resources -->
+                        <div class="footer-section">
+                            <h4>Resources</h4>
+                            <ul>
+                                <li><a href="#">AI Tools</a></li>
+                                <li><a href="#">Datasets</a></li>
+                                <li><a href="#">Code Examples</a></li>
+                                <li><a href="#">Community</a></li>
+                                <li><a href="#">Newsletter</a></li>
+                            </ul>
+                        </div>
+
+                        <!-- Company -->
+                        <div class="footer-section">
+                            <h4>Company</h4>
+                            <ul>
+                                <li><a href="#">About Us</a></li>
+                                <li><a href="#">Our Team</a></li>
+                                <li><a href="#">Careers</a></li>
+                                <li><a href="#">Contact</a></li>
+                                <li><a href="#">Privacy Policy</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bottom Section -->
+                <div class="py-8 border-t border-gray-800">
+                    <div class="flex flex-col lg:flex-row justify-between items-center gap-6">
+                        <!-- Copyright -->
+                        <div class="text-gray-400 text-sm">
+                            © 2025 AI Insights. All rights reserved. Built with passion for AI innovation.
+                        </div>
+
+                        <!-- Social Links -->
+                        <div class="flex items-center space-x-4">
+                            <span class="text-gray-500 text-sm mr-2">Follow us:</span>
+                            <a href="#" class="social-link">
+                                <i data-lucide="twitter" class="icon-sm"></i>
+                            </a>
+                            <a href="#" class="social-link">
+                                <i data-lucide="linkedin" class="icon-sm"></i>
+                            </a>
+                            <a href="#" class="social-link">
+                                <i data-lucide="github" class="icon-sm"></i>
+                            </a>
+                            <a href="#" class="social-link">
+                                <i data-lucide="youtube" class="icon-sm"></i>
+                            </a>
+                        </div>
+
+                        <!-- Status Badge -->
+                        <div class="badge" style="background: rgba(16, 185, 129, 0.2); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.3);">
+                            <div class="w-2 h-2 bg-green-400 rounded-full mr-2" style="animation: pulse 2s infinite;"></div>
+                            All Systems Operational
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        <!-- Back to Top Button -->
+        <button id="backToTop" class="fixed bottom-8 right-8 w-12 h-12 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full shadow-lg transition-all duration-300 hover:scale-110 z-50" style="display: none;">
+            <i data-lucide="arrow-up" class="icon text-white"></i>
+        </button>
+    </div>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Create floating particles
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 50;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 6 + 's';
+                particle.style.animationDuration = (6 + Math.random() * 4) + 's';
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // Typing animation
+        function typeText(element, text, speed = 100) {
+            let i = 0;
+            element.textContent = '';
+            
+            function type() {
+                if (i < text.length) {
+                    element.textContent += text.charAt(i);
+                    i++;
+                    setTimeout(type, speed);
+                } else {
+                    element.classList.remove('typing-animation');
+                }
+            }
+            
+            type();
+        }
+
+        // Animated counter
+        function animateCounter(element, start, end, duration = 2000) {
+            const range = end - start;
+            const startTime = performance.now();
+            const suffix = element.textContent.includes('+') ? '+' : 
+                          element.textContent.includes('K') ? 'K+' : 
+                          element.textContent.includes('%') ? '%' : '';
+            
+            function update(currentTime) {
+                const elapsed = currentTime - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                const current = start + (range * progress);
+                
+                element.textContent = Math.round(current) + suffix;
+                
+                if (progress < 1) {
+                    requestAnimationFrame(update);
+                }
+            }
+            
+            requestAnimationFrame(update);
+        }
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    if (entry.target.hasAttribute('data-count')) {
+                        const count = parseInt(entry.target.getAttribute('data-count'));
+                        animateCounter(entry.target, 0, count);
+                    }
+                    
+                    entry.target.classList.add('loaded');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        // Smooth scrolling for anchor links
+        function smoothScroll(target) {
+            const element = document.querySelector(target);
+            if (element) {
+                element.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        }
+
+        // Back to top button
+        function setupBackToTop() {
+            const backToTopBtn = document.getElementById('backToTop');
+            
+            window.addEventListener('scroll', () => {
+                if (window.pageYOffset > 300) {
+                    backToTopBtn.style.display = 'flex';
+                    backToTopBtn.style.alignItems = 'center';
+                    backToTopBtn.style.justifyContent = 'center';
+                } else {
+                    backToTopBtn.style.display = 'none';
+                }
+            });
+            
+            backToTopBtn.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        }
+
+        // Initialize everything when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            // Create particles
+            createParticles();
+            
+            // Start typing animation
+            const typingElement = document.getElementById('typingText');
+            if (typingElement) {
+                setTimeout(() => {
+                    typeText(typingElement, 'Discover the Future of Artificial Intelligence', 80);
+                }, 1000);
+            }
+            
+            // Observe elements for animations
+            const animatedElements = document.querySelectorAll('.loading, [data-count], .slide-in-up, .fade-in-scale');
+            animatedElements.forEach(el => {
+                el.classList.add('loading');
+                observer.observe(el);
+            });
+            
+            // Setup back to top
+            setupBackToTop();
+            
+            // Handle anchor link clicks
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const target = this.getAttribute('href');
+                    if (target && target !== '#') {
+                        smoothScroll(target);
+                    }
+                });
+            });
+        });
+
+        // Add mouse interaction for particles
+        document.addEventListener('mousemove', function(e) {
+            const particles = document.querySelectorAll('.particle');
+            const mouseX = e.clientX / window.innerWidth;
+            const mouseY = e.clientY / window.innerHeight;
+            
+            particles.forEach((particle, index) => {
+                const speed = (index % 5 + 1) * 0.5;
+                const x = (mouseX - 0.5) * speed;
+                const y = (mouseY - 0.5) * speed;
+                
+                particle.style.transform = `translate(${x}px, ${y}px)`;
+            });
+        });
+
+        // Form submission handling
+        document.querySelectorAll('form').forEach(form => {
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                // Add your form submission logic here
+                alert('Thank you for subscribing! This is a demo.');
+            });
+        });
+    </script>
+</body>
+</html>

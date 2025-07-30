@@ -1,0 +1,2592 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Of Investor Relations | Global Financial Leadership</title>
+    <meta name="description" content="Connecting global financial institutions with transparent reporting, strategic insights, and comprehensive investor resources across international markets.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ==========================================
+           CSS VARIABLES & RESET
+           ========================================== */
+        :root {
+            --color-primary: #3b82f6;
+            --color-secondary: #1e40af;
+            --color-accent: #06b6d4;
+            --color-white: #ffffff;
+            --color-black: #000000;
+            --color-gray-50: #f9fafb;
+            --color-gray-100: #f3f4f6;
+            --color-gray-200: #e5e7eb;
+            --color-gray-300: #d1d5db;
+            --color-gray-400: #9ca3af;
+            --color-gray-500: #6b7280;
+            --color-gray-600: #4b5563;
+            --color-gray-700: #374151;
+            --color-gray-800: #1f2937;
+            --color-gray-900: #111827;
+            --color-slate-50: #f8fafc;
+            --color-slate-100: #f1f5f9;
+            --color-slate-200: #e2e8f0;
+            --color-slate-300: #cbd5e1;
+            --color-slate-400: #94a3b8;
+            --color-slate-500: #64748b;
+            --color-slate-600: #475569;
+            --color-slate-700: #334155;
+            --color-slate-800: #1e293b;
+            --color-slate-900: #0f172a;
+            --color-slate-950: #020617;
+            --color-blue-400: #60a5fa;
+            --color-blue-500: #3b82f6;
+            --color-blue-600: #2563eb;
+            --color-blue-700: #1d4ed8;
+            --color-blue-800: #1e40af;
+            --color-blue-900: #1e3a8a;
+            --color-blue-950: #172554;
+            --color-green-400: #4ade80;
+            --color-green-500: #22c55e;
+            --color-purple-400: #a78bfa;
+            --color-purple-500: #8b5cf6;
+            --color-cyan-400: #22d3ee;
+            --color-cyan-500: #06b6d4;
+            --color-orange-400: #fb923c;
+            --color-orange-500: #f97316;
+            --color-red-400: #f87171;
+            --color-red-500: #ef4444;
+
+            --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            --font-size-xs: 0.75rem;
+            --font-size-sm: 0.875rem;
+            --font-size-base: 1rem;
+            --font-size-lg: 1.125rem;
+            --font-size-xl: 1.25rem;
+            --font-size-2xl: 1.5rem;
+            --font-size-3xl: 1.875rem;
+            --font-size-4xl: 2.25rem;
+            --font-size-5xl: 3rem;
+            --font-size-6xl: 3.75rem;
+            --font-weight-normal: 400;
+            --font-weight-medium: 500;
+            --font-weight-semibold: 600;
+            --font-weight-bold: 700;
+            --font-weight-extrabold: 800;
+            --line-height-tight: 1.25;
+            --line-height-normal: 1.5;
+            --line-height-relaxed: 1.625;
+
+            --spacing-1: 0.25rem;
+            --spacing-2: 0.5rem;
+            --spacing-3: 0.75rem;
+            --spacing-4: 1rem;
+            --spacing-5: 1.25rem;
+            --spacing-6: 1.5rem;
+            --spacing-8: 2rem;
+            --spacing-10: 2.5rem;
+            --spacing-12: 3rem;
+            --spacing-16: 4rem;
+            --spacing-20: 5rem;
+            --spacing-24: 6rem;
+            --spacing-32: 8rem;
+
+            --radius-sm: 0.125rem;
+            --radius-md: 0.375rem;
+            --radius-lg: 0.5rem;
+            --radius-xl: 0.75rem;
+            --radius-2xl: 1rem;
+            --radius-3xl: 1.5rem;
+            --radius-full: 9999px;
+
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+            --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+
+            --transition-fast: 150ms ease;
+            --transition-normal: 300ms ease;
+            --transition-slow: 500ms ease;
+
+            --z-dropdown: 1000;
+            --z-sticky: 1020;
+            --z-fixed: 1030;
+            --z-modal: 1050;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-family);
+            font-size: var(--font-size-base);
+            font-weight: var(--font-weight-normal);
+            line-height: var(--line-height-normal);
+            color: var(--color-white);
+            background-color: var(--color-black);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        button {
+            cursor: pointer;
+            border: none;
+            background: none;
+            font-family: inherit;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-6);
+        }
+
+        /* ==========================================
+           ANIMATIONS
+           ========================================== */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        @keyframes gridMove {
+            0% { background-position: 0px 0px; }
+            100% { background-position: 50px 50px; }
+        }
+
+        @keyframes gradientText {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        @keyframes particleFloat {
+            0%, 100% { 
+                transform: translateY(0px) translateX(0px) scale(1);
+                opacity: 0.3;
+            }
+            25% { 
+                transform: translateY(-20px) translateX(10px) scale(1.1);
+                opacity: 0.6;
+            }
+            50% { 
+                transform: translateY(-30px) translateX(-5px) scale(0.9);
+                opacity: 0.8;
+            }
+            75% { 
+                transform: translateY(-15px) translateX(-10px) scale(1.05);
+                opacity: 0.5;
+            }
+        }
+
+        @keyframes mouseGlow {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 0.2;
+            }
+            50% {
+                transform: scale(1.1);
+                opacity: 0.4;
+            }
+        }
+
+        @keyframes ambientFloat1 {
+            0%, 100% {
+                transform: scale(1) translateX(0px);
+                opacity: 0.3;
+            }
+            50% {
+                transform: scale(1.2) translateX(50px);
+                opacity: 0.5;
+            }
+        }
+
+        @keyframes ambientFloat2 {
+            0%, 100% {
+                transform: scale(1.2) translateX(0px);
+                opacity: 0.2;
+            }
+            50% {
+                transform: scale(1) translateX(-30px);
+                opacity: 0.4;
+            }
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes scaleFloat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        @keyframes glow {
+            0%, 100% {
+                box-shadow: 0 0 20px rgba(59, 130, 246, 0.4);
+            }
+            50% {
+                box-shadow: 0 0 40px rgba(59, 130, 246, 0.6);
+            }
+        }
+
+        /* ==========================================
+           BACKGROUND ELEMENTS
+           ========================================== */
+        .background-wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .bg-gradient-1 {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, var(--color-slate-950) 0%, var(--color-blue-950) 50%, var(--color-black) 100%);
+        }
+
+        .bg-gradient-2 {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(30, 64, 175, 0.3) 0%, rgba(15, 23, 42, 0.2) 50%, rgba(30, 41, 59, 0.4) 100%);
+            animation: gradientShift 20s ease-in-out infinite;
+        }
+
+        .grid-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            opacity: 0.2;
+        }
+
+        .grid-overlay-1 {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, transparent 0%, rgba(59, 130, 246, 0.05) 50%, transparent 100%);
+        }
+
+        .grid-overlay-2 {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.1) 0%, transparent 50%);
+        }
+
+        .grid-animated {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 49%, rgba(59, 130, 246, 0.03) 50%, transparent 51%);
+            background-size: 50px 50px;
+            animation: gridMove 20s linear infinite;
+        }
+
+        .luxury-particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: var(--color-blue-400);
+            border-radius: 50%;
+            opacity: 0.3;
+            animation: particleFloat 6s ease-in-out infinite;
+        }
+
+        .mouse-follower {
+            position: absolute;
+            width: 384px;
+            height: 384px;
+            border-radius: 50%;
+            pointer-events: none;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.2) 0%, rgba(30, 64, 175, 0.1) 50%, transparent 70%);
+            opacity: 0.3;
+            animation: mouseGlow 4s ease-in-out infinite;
+        }
+
+        .ambient-light-1 {
+            position: absolute;
+            top: 0;
+            left: 25%;
+            width: 384px;
+            height: 384px;
+            background: rgba(59, 130, 246, 0.1);
+            border-radius: 50%;
+            filter: blur(60px);
+            animation: ambientFloat1 8s ease-in-out infinite;
+        }
+
+        .ambient-light-2 {
+            position: absolute;
+            bottom: 0;
+            right: 25%;
+            width: 320px;
+            height: 320px;
+            background: rgba(71, 85, 105, 0.1);
+            border-radius: 50%;
+            filter: blur(60px);
+            animation: ambientFloat2 10s ease-in-out infinite;
+        }
+
+        /* ==========================================
+           NAVIGATION
+           ========================================== */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: var(--z-fixed);
+            transition: all var(--transition-slow);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+
+        .navbar.scrolled {
+            background: rgba(15, 23, 42, 0.8);
+            border-bottom: 1px solid rgba(59, 130, 246, 0.2);
+        }
+
+        .nav-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 80px;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-3);
+            transition: transform var(--transition-normal);
+        }
+
+        .nav-logo:hover {
+            transform: scale(1.05);
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--color-blue-500), var(--color-slate-600));
+            border-radius: var(--radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-white);
+        }
+
+        .logo-text {
+            font-size: var(--font-size-xl);
+            font-weight: var(--font-weight-semibold);
+            color: var(--color-white);
+        }
+
+        .nav-items {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-8);
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-2);
+            color: var(--color-gray-300);
+            transition: all var(--transition-normal);
+            position: relative;
+            padding: var(--spacing-2) 0;
+            opacity: 0;
+            animation: fadeInUp 0.5s ease forwards;
+        }
+
+        .nav-item:nth-child(1) { animation-delay: 0.1s; }
+        .nav-item:nth-child(2) { animation-delay: 0.2s; }
+        .nav-item:nth-child(3) { animation-delay: 0.3s; }
+        .nav-item:nth-child(4) { animation-delay: 0.4s; }
+        .nav-item:nth-child(5) { animation-delay: 0.5s; }
+
+        .nav-item:hover {
+            color: var(--color-white);
+            transform: translateY(-2px);
+        }
+
+        .nav-item::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--color-blue-400);
+            transition: width var(--transition-normal);
+        }
+
+        .nav-item:hover::after {
+            width: 100%;
+        }
+
+        .nav-item svg {
+            transition: color var(--transition-normal);
+        }
+
+        .nav-item:hover svg {
+            color: var(--color-blue-400);
+        }
+
+        .nav-cta {
+            opacity: 0;
+            animation: scaleIn 0.5s ease forwards 0.6s;
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, var(--color-blue-600), var(--color-slate-600));
+            color: var(--color-white);
+            padding: var(--spacing-3) var(--spacing-6);
+            border-radius: var(--radius-lg);
+            font-weight: var(--font-weight-medium);
+            transition: all var(--transition-normal);
+            border: none;
+            cursor: pointer;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .cta-button:hover {
+            background: linear-gradient(135deg, var(--color-blue-700), var(--color-slate-700));
+            transform: translateY(-2px);
+            box-shadow: 0 0 25px rgba(59, 130, 246, 0.25);
+        }
+
+        .mobile-toggle {
+            display: none;
+            flex-direction: column;
+            gap: var(--spacing-1);
+            width: 24px;
+            height: 18px;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .mobile-toggle span {
+            width: 100%;
+            height: 2px;
+            background: var(--color-white);
+            transition: all var(--transition-normal);
+        }
+
+        /* ==========================================
+           HERO SECTION
+           ========================================== */
+        .hero-section {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-top: 80px;
+            overflow: hidden;
+            z-index: 10;
+        }
+
+        .hero-background-effects {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            opacity: 0.3;
+        }
+
+        .hero-bg-1 {
+            position: absolute;
+            top: 25%;
+            left: 25%;
+            width: 384px;
+            height: 384px;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), transparent);
+            border-radius: 50%;
+            filter: blur(60px);
+            animation: ambientFloat1 12s ease-in-out infinite;
+        }
+
+        .hero-bg-2 {
+            position: absolute;
+            bottom: 25%;
+            right: 25%;
+            width: 320px;
+            height: 320px;
+            background: linear-gradient(135deg, rgba(71, 85, 105, 0.2), transparent);
+            border-radius: 50%;
+            filter: blur(60px);
+            animation: ambientFloat2 8s ease-in-out infinite;
+        }
+
+        .hero-content {
+            text-align: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        .premium-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--spacing-2);
+            padding: var(--spacing-3) var(--spacing-6);
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(71, 85, 105, 0.2));
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: var(--radius-full);
+            margin-bottom: var(--spacing-8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            opacity: 0;
+            animation: scaleIn 0.8s ease forwards 0.3s;
+            transition: all var(--transition-normal);
+        }
+
+        .premium-badge:hover {
+            transform: scale(1.05);
+        }
+
+        .premium-badge svg {
+            color: var(--color-blue-400);
+        }
+
+        .premium-badge span {
+            color: var(--color-blue-300);
+            font-weight: var(--font-weight-medium);
+            font-size: var(--font-size-sm);
+            letter-spacing: 0.025em;
+        }
+
+        .hero-title {
+            margin-bottom: var(--spacing-8);
+        }
+
+        .title-line-1 {
+            display: block;
+            font-size: var(--font-size-6xl);
+            font-weight: var(--font-weight-bold);
+            color: var(--color-white);
+            margin-bottom: var(--spacing-4);
+            opacity: 0;
+            animation: fadeInUp 1.2s ease forwards 0.7s;
+        }
+
+        .title-line-2 {
+            display: block;
+            font-size: var(--font-size-6xl);
+            font-weight: var(--font-weight-bold);
+            background: linear-gradient(135deg, var(--color-blue-400), var(--color-slate-300), var(--color-blue-500));
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-size: 200% 200%;
+            animation: gradientText 5s ease-in-out infinite, fadeInUp 1.2s ease forwards 0.9s;
+            opacity: 0;
+        }
+
+        .hero-subtitle {
+            font-size: var(--font-size-xl);
+            color: var(--color-gray-300);
+            margin-bottom: var(--spacing-16);
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: var(--line-height-relaxed);
+            opacity: 0;
+            animation: fadeInUp 1s ease forwards 1.1s;
+        }
+
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--spacing-8);
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .stat-card {
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(71, 85, 105, 0.5);
+            border-radius: var(--radius-2xl);
+            padding: var(--spacing-6);
+            transition: all var(--transition-slow);
+            opacity: 0;
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        .stat-card:nth-child(1) { animation-delay: 1.3s; }
+        .stat-card:nth-child(2) { animation-delay: 1.4s; }
+        .stat-card:nth-child(3) { animation-delay: 1.5s; }
+        .stat-card:nth-child(4) { animation-delay: 1.6s; }
+
+        .stat-card:hover {
+            transform: translateY(-10px) scale(1.05);
+            border-color: rgba(59, 130, 246, 0.5);
+        }
+
+        .stat-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, rgba(71, 85, 105, 0.2), rgba(59, 130, 246, 0.2));
+            border: 1px solid rgba(71, 85, 105, 0.3);
+            border-radius: var(--radius-xl);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto var(--spacing-4);
+            transition: all var(--transition-normal);
+        }
+
+        .stat-card:hover .stat-icon {
+            transform: rotate(360deg) scale(1.1);
+            border-color: rgba(59, 130, 246, 0.5);
+        }
+
+        .stat-icon svg {
+            color: var(--color-blue-400);
+        }
+
+        .stat-card[data-stat="global"] .stat-icon svg { color: var(--color-blue-400); }
+        .stat-card[data-stat="assets"] .stat-icon svg { color: var(--color-slate-400); }
+        .stat-card[data-stat="rating"] .stat-icon svg { color: var(--color-green-400); }
+        .stat-card[data-stat="experience"] .stat-icon svg { color: var(--color-purple-400); }
+
+        .stat-value {
+            font-size: var(--font-size-3xl);
+            font-weight: var(--font-weight-bold);
+            color: var(--color-white);
+            margin-bottom: var(--spacing-2);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .stat-label {
+            color: var(--color-gray-400);
+            font-size: var(--font-size-sm);
+            line-height: var(--line-height-tight);
+            margin-bottom: var(--spacing-2);
+        }
+
+        .stat-change {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--spacing-1);
+            font-size: var(--font-size-xs);
+            color: var(--color-blue-400);
+        }
+
+        .hero-decorations {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
+        }
+
+        .decoration-ring-1 {
+            position: absolute;
+            top: 33%;
+            left: 40px;
+            width: 128px;
+            height: 128px;
+            border: 2px solid rgba(59, 130, 246, 0.2);
+            border-radius: 50%;
+            animation: spin 20s linear infinite, scaleFloat 4s ease-in-out infinite;
+        }
+
+        .decoration-ring-2 {
+            position: absolute;
+            bottom: 33%;
+            right: 40px;
+            width: 96px;
+            height: 96px;
+            border: 2px solid rgba(71, 85, 105, 0.2);
+            border-radius: 50%;
+            animation: spin 15s linear infinite reverse, scaleFloat 3s ease-in-out infinite;
+        }
+
+        /* ==========================================
+           MAIN CONTENT
+           ========================================== */
+        .main-content {
+            position: relative;
+            z-index: 10;
+            padding: var(--spacing-20) 0;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-16);
+        }
+
+        /* ==========================================
+           BANK LINKS SECTION
+           ========================================== */
+        .bank-links-section {
+            opacity: 0;
+            animation: fadeInLeft 1s ease forwards;
+            animation-delay: 0.3s;
+        }
+
+        .section-header {
+            margin-bottom: var(--spacing-8);
+        }
+
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-3);
+            font-size: var(--font-size-3xl);
+            font-weight: var(--font-weight-bold);
+            color: var(--color-white);
+            margin-bottom: var(--spacing-4);
+        }
+
+        .section-title svg {
+            color: var(--color-blue-400);
+        }
+
+        .section-description {
+            color: var(--color-gray-400);
+            font-size: var(--font-size-lg);
+            line-height: var(--line-height-relaxed);
+        }
+
+        .bank-cards {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-4);
+        }
+
+        .bank-card {
+            opacity: 0;
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .bank-card:nth-child(1) { animation-delay: 0.1s; }
+        .bank-card:nth-child(2) { animation-delay: 0.2s; }
+        .bank-card:nth-child(3) { animation-delay: 0.3s; }
+        .bank-card:nth-child(4) { animation-delay: 0.4s; }
+        .bank-card:nth-child(5) { animation-delay: 0.5s; }
+        .bank-card:nth-child(6) { animation-delay: 0.6s; }
+        .bank-card:nth-child(7) { animation-delay: 0.7s; }
+        .bank-card:nth-child(8) { animation-delay: 0.8s; }
+
+        .bank-link {
+            display: block;
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.9), rgba(30, 41, 59, 0.9));
+            border: 1px solid rgba(71, 85, 105, 0.5);
+            border-radius: var(--radius-2xl);
+            padding: var(--spacing-6);
+            transition: all var(--transition-slow);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bank-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.05), transparent);
+            opacity: 0;
+            transition: opacity var(--transition-slow);
+        }
+
+        .bank-link:hover::before {
+            opacity: 1;
+        }
+
+        .bank-link:hover {
+            transform: translateY(-2px) scale(1.02);
+            border-color: rgba(59, 130, 246, 0.5);
+        }
+
+        .bank-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+            z-index: 2;
+        }
+
+        .bank-info {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-4);
+        }
+
+        .bank-logo {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, var(--color-slate-700), var(--color-slate-800));
+            border-radius: var(--radius-xl);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: var(--font-size-2xl);
+            transition: transform var(--transition-normal);
+        }
+
+        .bank-link:hover .bank-logo {
+            transform: scale(1.1);
+        }
+
+        .bank-name {
+            font-size: var(--font-size-lg);
+            font-weight: var(--font-weight-semibold);
+            color: var(--color-white);
+            margin-bottom: var(--spacing-1);
+            transition: color var(--transition-normal);
+        }
+
+        .bank-link:hover .bank-name {
+            color: var(--color-blue-300);
+        }
+
+        .bank-meta {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-4);
+            font-size: var(--font-size-sm);
+            color: var(--color-gray-400);
+        }
+
+        .bank-assets {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-1);
+        }
+
+        .bank-arrow {
+            width: 40px;
+            height: 40px;
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            border-radius: var(--radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all var(--transition-normal);
+        }
+
+        .bank-link:hover .bank-arrow {
+            background: rgba(59, 130, 246, 0.2);
+            border-color: rgba(59, 130, 246, 0.4);
+            transform: rotate(45deg) scale(1.1);
+        }
+
+        .bank-arrow svg {
+            color: var(--color-blue-400);
+            transition: color var(--transition-normal);
+        }
+
+        .bank-link:hover .bank-arrow svg {
+            color: var(--color-blue-300);
+        }
+
+        .partnership-info {
+            margin-top: var(--spacing-8);
+            padding: var(--spacing-6);
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(71, 85, 105, 0.1));
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            border-radius: var(--radius-2xl);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+
+        .partnership-title {
+            font-size: var(--font-size-lg);
+            font-weight: var(--font-weight-semibold);
+            color: var(--color-white);
+            margin-bottom: var(--spacing-2);
+        }
+
+        .partnership-description {
+            color: var(--color-gray-300);
+            font-size: var(--font-size-sm);
+            line-height: var(--line-height-relaxed);
+        }
+
+        /* ==========================================
+           INFORMATION SECTION
+           ========================================== */
+        .information-section {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-8);
+            opacity: 0;
+            animation: fadeInRight 1s ease forwards;
+            animation-delay: 0.5s;
+        }
+
+        .info-card {
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.9), rgba(30, 41, 59, 0.9));
+            border: 1px solid rgba(71, 85, 105, 0.5);
+            border-radius: var(--radius-2xl);
+            padding: var(--spacing-8);
+            transition: all var(--transition-slow);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        .info-card:nth-child(1) { animation-delay: 0.2s; }
+        .info-card:nth-child(2) { animation-delay: 0.4s; }
+        .info-card:nth-child(3) { animation-delay: 0.6s; }
+        .info-card:nth-child(4) { animation-delay: 0.8s; }
+        .info-card:nth-child(5) { animation-delay: 1.0s; }
+
+        .info-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            opacity: 0;
+            transition: opacity var(--transition-slow);
+        }
+
+        .info-card[data-section="resources"]::before {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), transparent);
+        }
+
+        .info-card[data-section="governance"]::before {
+            background: linear-gradient(135deg, rgba(34, 197, 94, 0.1), transparent);
+        }
+
+        .info-card[data-section="statements"]::before {
+            background: linear-gradient(135deg, rgba(168, 85, 247, 0.1), transparent);
+        }
+
+        .info-card[data-section="services"]::before {
+            background: linear-gradient(135deg, rgba(34, 211, 238, 0.1), transparent);
+        }
+
+        .info-card[data-section="contact"]::before {
+            background: linear-gradient(135deg, rgba(251, 146, 60, 0.1), transparent);
+        }
+
+        .info-card:hover::before {
+            opacity: 1;
+        }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .info-card[data-section="resources"]:hover {
+            border-color: rgba(59, 130, 246, 0.5);
+        }
+
+        .info-card[data-section="governance"]:hover {
+            border-color: rgba(34, 197, 94, 0.5);
+        }
+
+        .info-card[data-section="statements"]:hover {
+            border-color: rgba(168, 85, 247, 0.5);
+        }
+
+        .info-card[data-section="services"]:hover {
+            border-color: rgba(34, 211, 238, 0.5);
+        }
+
+        .info-card[data-section="contact"]:hover {
+            border-color: rgba(251, 146, 60, 0.5);
+        }
+
+        .info-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: var(--spacing-6);
+        }
+
+        .info-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: var(--radius-xl);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: var(--spacing-4);
+            transition: all var(--transition-normal);
+        }
+
+        .info-card[data-section="resources"] .info-icon {
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+        }
+
+        .info-card[data-section="governance"] .info-icon {
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid rgba(34, 197, 94, 0.2);
+        }
+
+        .info-card[data-section="statements"] .info-icon {
+            background: rgba(168, 85, 247, 0.1);
+            border: 1px solid rgba(168, 85, 247, 0.2);
+        }
+
+        .info-card[data-section="services"] .info-icon {
+            background: rgba(34, 211, 238, 0.1);
+            border: 1px solid rgba(34, 211, 238, 0.2);
+        }
+
+        .info-card[data-section="contact"] .info-icon {
+            background: rgba(251, 146, 60, 0.1);
+            border: 1px solid rgba(251, 146, 60, 0.2);
+        }
+
+        .info-card:hover .info-icon {
+            transform: scale(1.1);
+        }
+
+        .info-icon svg {
+            color: var(--color-blue-400);
+        }
+
+        .info-card[data-section="governance"] .info-icon svg {
+            color: var(--color-green-400);
+        }
+
+        .info-card[data-section="statements"] .info-icon svg {
+            color: var(--color-purple-400);
+        }
+
+        .info-card[data-section="services"] .info-icon svg {
+            color: var(--color-cyan-400);
+        }
+
+        .info-card[data-section="contact"] .info-icon svg {
+            color: var(--color-orange-400);
+        }
+
+        .info-title {
+            font-size: var(--font-size-xl);
+            font-weight: var(--font-weight-semibold);
+            color: var(--color-white);
+            transition: color var(--transition-normal);
+        }
+
+        .info-items {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-3);
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: var(--spacing-3);
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: var(--radius-lg);
+            transition: all var(--transition-normal);
+            cursor: pointer;
+        }
+
+        .info-item:hover {
+            background: rgba(0, 0, 0, 0.4);
+            transform: translateX(5px);
+        }
+
+        .item-content {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-3);
+        }
+
+        .item-content svg {
+            color: var(--color-gray-400);
+            transition: color var(--transition-normal);
+        }
+
+        .info-item:hover .item-content svg {
+            color: var(--color-blue-400);
+        }
+
+        .item-name {
+            color: var(--color-white);
+            font-weight: var(--font-weight-medium);
+            margin-bottom: var(--spacing-1);
+        }
+
+        .item-meta {
+            font-size: var(--font-size-xs);
+            color: var(--color-gray-400);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-2);
+        }
+
+        .governance-items {
+            display: grid;
+            gap: var(--spacing-4);
+        }
+
+        .governance-item {
+            padding: var(--spacing-4);
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: var(--radius-lg);
+            transition: all var(--transition-normal);
+        }
+
+        .governance-item:hover {
+            background: rgba(0, 0, 0, 0.4);
+            transform: scale(1.02);
+        }
+
+        .governance-name {
+            color: var(--color-white);
+            font-weight: var(--font-weight-medium);
+            margin-bottom: var(--spacing-1);
+        }
+
+        .governance-description {
+            color: var(--color-gray-400);
+            font-size: var(--font-size-sm);
+        }
+
+        .financial-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-4);
+            margin-top: var(--spacing-4);
+        }
+
+        .financial-item {
+            padding: var(--spacing-4);
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: var(--radius-lg);
+            text-align: center;
+            transition: all var(--transition-normal);
+        }
+
+        .financial-item:hover {
+            background: rgba(0, 0, 0, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .financial-value {
+            font-size: var(--font-size-2xl);
+            font-weight: var(--font-weight-bold);
+            color: var(--color-white);
+            margin-bottom: var(--spacing-1);
+        }
+
+        .financial-label {
+            font-size: var(--font-size-sm);
+            color: var(--color-gray-400);
+            margin-bottom: var(--spacing-1);
+        }
+
+        .financial-change {
+            font-size: var(--font-size-xs);
+            font-weight: var(--font-weight-medium);
+            color: var(--color-green-400);
+        }
+
+        .services-grid {
+            display: grid;
+            gap: var(--spacing-4);
+        }
+
+        .service-item {
+            padding: var(--spacing-4);
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: var(--radius-lg);
+            transition: all var(--transition-normal);
+        }
+
+        .service-item:hover {
+            background: rgba(0, 0, 0, 0.4);
+            transform: scale(1.02);
+        }
+
+        .service-name {
+            color: var(--color-white);
+            font-weight: var(--font-weight-medium);
+            margin-bottom: var(--spacing-1);
+        }
+
+        .service-description {
+            color: var(--color-gray-400);
+            font-size: var(--font-size-sm);
+        }
+
+        .contact-details {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-4);
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-3);
+            color: var(--color-gray-300);
+            transition: color var(--transition-normal);
+        }
+
+        .contact-item:hover {
+            color: var(--color-orange-400);
+        }
+
+        .contact-item svg {
+            color: var(--color-orange-400);
+        }
+
+        .contact-hours {
+            font-size: var(--font-size-sm);
+            color: var(--color-gray-400);
+        }
+
+        .contact-cta {
+            margin-top: var(--spacing-6);
+            padding-top: var(--spacing-6);
+            border-top: 1px solid rgba(71, 85, 105, 0.5);
+        }
+
+        .meeting-button {
+            width: 100%;
+            background: linear-gradient(135deg, var(--color-orange-500), var(--color-red-500));
+            color: var(--color-white);
+            padding: var(--spacing-4) var(--spacing-6);
+            border-radius: var(--radius-lg);
+            font-weight: var(--font-weight-medium);
+            transition: all var(--transition-normal);
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--spacing-2);
+        }
+
+        .meeting-button:hover {
+            background: linear-gradient(135deg, var(--color-orange-600), var(--color-red-600));
+            transform: translateY(-2px);
+        }
+
+        /* ==========================================
+           FOOTER
+           ========================================== */
+        .footer {
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(180deg, var(--color-slate-950), var(--color-slate-900), var(--color-black));
+            border-top: 1px solid rgba(71, 85, 105, 0.5);
+        }
+
+        .footer-content {
+            padding: var(--spacing-16) 0;
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: var(--spacing-12);
+            margin-bottom: var(--spacing-12);
+        }
+
+        .footer-brand {
+            opacity: 0;
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            margin-bottom: var(--spacing-6);
+        }
+
+        .footer-logo-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, var(--color-blue-500), var(--color-slate-600));
+            border-radius: var(--radius-xl);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: var(--spacing-4);
+            box-shadow: var(--shadow-2xl);
+            transition: transform var(--transition-normal);
+        }
+
+        .footer-logo:hover .footer-logo-icon {
+            transform: rotate(360deg) scale(1.1);
+        }
+
+        .footer-logo-icon svg {
+            color: var(--color-white);
+        }
+
+        .footer-logo-text {
+            font-size: var(--font-size-2xl);
+            font-weight: var(--font-weight-bold);
+            background: linear-gradient(135deg, var(--color-white), var(--color-blue-300), var(--color-slate-300));
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .footer-description {
+            color: var(--color-gray-400);
+            font-size: var(--font-size-sm);
+            line-height: var(--line-height-relaxed);
+            margin-bottom: var(--spacing-6);
+        }
+
+        .footer-contact {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-3);
+            margin-bottom: var(--spacing-6);
+        }
+
+        .footer-contact-item {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-3);
+            color: var(--color-gray-400);
+            font-size: var(--font-size-sm);
+            transition: color var(--transition-normal);
+        }
+
+        .footer-contact-item:hover {
+            color: var(--color-blue-400);
+        }
+
+        .footer-contact-item svg {
+            color: var(--color-blue-400);
+        }
+
+        .footer-social {
+            display: flex;
+            gap: var(--spacing-4);
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            background: rgba(71, 85, 105, 0.6);
+            border: 1px solid rgba(71, 85, 105, 0.5);
+            border-radius: var(--radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-gray-400);
+            transition: all var(--transition-normal);
+        }
+
+        .social-link:hover {
+            transform: translateY(-2px) scale(1.1);
+            border-color: var(--color-blue-400);
+            color: var(--color-blue-400);
+        }
+
+        .footer-links {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--spacing-8);
+        }
+
+        .footer-column {
+            opacity: 0;
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        .footer-column:nth-child(1) { animation-delay: 0.1s; }
+        .footer-column:nth-child(2) { animation-delay: 0.2s; }
+        .footer-column:nth-child(3) { animation-delay: 0.3s; }
+
+        .footer-column-title {
+            color: var(--color-white);
+            font-weight: var(--font-weight-semibold);
+            margin-bottom: var(--spacing-4);
+            font-size: var(--font-size-sm);
+            text-transform: uppercase;
+            letter-spacing: 0.025em;
+        }
+
+        .footer-column-links {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-2);
+        }
+
+        .footer-column-links li a {
+            color: var(--color-gray-400);
+            font-size: var(--font-size-sm);
+            transition: all var(--transition-normal);
+        }
+
+        .footer-column-links li a:hover {
+            color: var(--color-white);
+            transform: translateX(5px);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(71, 85, 105, 0.5);
+            padding: var(--spacing-6) 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease forwards 0.6s;
+        }
+
+        .copyright {
+            color: var(--color-gray-500);
+            font-size: var(--font-size-xs);
+        }
+
+        .legal-links {
+            display: flex;
+            gap: var(--spacing-6);
+            font-size: var(--font-size-xs);
+        }
+
+        .legal-links a {
+            color: var(--color-gray-500);
+            transition: color var(--transition-normal);
+        }
+
+        .legal-links a:hover {
+            color: var(--color-white);
+        }
+
+        .market-status {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-2);
+            font-size: var(--font-size-xs);
+        }
+
+        .status-indicator {
+            width: 8px;
+            height: 8px;
+            background: var(--color-green-400);
+            border-radius: 50%;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .market-status span {
+            color: var(--color-gray-500);
+        }
+
+        /* ==========================================
+           RESPONSIVE DESIGN
+           ========================================== */
+        @media (max-width: 768px) {
+            .nav-items {
+                display: none;
+            }
+            
+            .mobile-toggle {
+                display: flex;
+            }
+            
+            .nav-items.mobile-open {
+                display: flex;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: rgba(15, 23, 42, 0.95);
+                backdrop-filter: blur(12px);
+                flex-direction: column;
+                padding: var(--spacing-6);
+                border-top: 1px solid rgba(59, 130, 246, 0.2);
+            }
+            
+            .nav-item {
+                padding: var(--spacing-3) 0;
+                border-bottom: 1px solid rgba(71, 85, 105, 0.3);
+            }
+            
+            .title-line-1,
+            .title-line-2 {
+                font-size: var(--font-size-4xl);
+            }
+            
+            .hero-subtitle {
+                font-size: var(--font-size-lg);
+                padding: 0 var(--spacing-4);
+            }
+            
+            .hero-stats {
+                grid-template-columns: 1fr;
+                gap: var(--spacing-4);
+            }
+            
+            .content-grid {
+                grid-template-columns: 1fr;
+                gap: var(--spacing-8);
+            }
+            
+            .bank-content {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: var(--spacing-4);
+            }
+            
+            .bank-info {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: var(--spacing-3);
+            }
+            
+            .bank-meta {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: var(--spacing-2);
+            }
+            
+            .financial-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: var(--spacing-8);
+            }
+            
+            .footer-links {
+                grid-template-columns: 1fr;
+                gap: var(--spacing-6);
+            }
+            
+            .footer-bottom {
+                flex-direction: column;
+                gap: var(--spacing-4);
+                text-align: center;
+            }
+            
+            .legal-links {
+                flex-direction: column;
+                gap: var(--spacing-3);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 var(--spacing-4);
+            }
+            
+            .nav-content {
+                height: 60px;
+            }
+            
+            .logo-text {
+                font-size: var(--font-size-lg);
+            }
+            
+            .cta-button {
+                padding: var(--spacing-2) var(--spacing-4);
+                font-size: var(--font-size-sm);
+            }
+            
+            .hero-section {
+                padding-top: 60px;
+                min-height: 80vh;
+            }
+            
+            .title-line-1,
+            .title-line-2 {
+                font-size: var(--font-size-3xl);
+            }
+            
+            .hero-subtitle {
+                font-size: var(--font-size-base);
+                margin-bottom: var(--spacing-8);
+            }
+            
+            .premium-badge {
+                padding: var(--spacing-2) var(--spacing-4);
+                font-size: var(--font-size-xs);
+            }
+            
+            .stat-card {
+                padding: var(--spacing-3);
+            }
+            
+            .stat-icon {
+                width: 36px;
+                height: 36px;
+            }
+            
+            .stat-value {
+                font-size: var(--font-size-xl);
+            }
+            
+            .main-content {
+                padding: var(--spacing-12) 0;
+            }
+            
+            .section-title {
+                font-size: var(--font-size-xl);
+                flex-direction: column;
+                align-items: flex-start;
+                gap: var(--spacing-2);
+            }
+            
+            .section-description {
+                font-size: var(--font-size-base);
+            }
+            
+            .bank-cards {
+                gap: var(--spacing-3);
+            }
+            
+            .bank-link {
+                padding: var(--spacing-4);
+            }
+            
+            .bank-logo {
+                width: 36px;
+                height: 36px;
+                font-size: var(--font-size-lg);
+            }
+            
+            .bank-name {
+                font-size: var(--font-size-base);
+            }
+            
+            .bank-meta {
+                font-size: var(--font-size-xs);
+            }
+            
+            .bank-arrow {
+                width: 32px;
+                height: 32px;
+            }
+            
+            .info-card {
+                padding: var(--spacing-6);
+            }
+            
+            .info-icon {
+                width: 36px;
+                height: 36px;
+            }
+            
+            .info-title {
+                font-size: var(--font-size-lg);
+            }
+            
+            .info-item {
+                padding: var(--spacing-2);
+            }
+            
+            .governance-item,
+            .financial-item,
+            .service-item {
+                padding: var(--spacing-3);
+            }
+            
+            .footer-content {
+                padding: var(--spacing-8) 0;
+            }
+            
+            .footer-logo-text {
+                font-size: var(--font-size-lg);
+            }
+            
+            .footer-description {
+                font-size: var(--font-size-xs);
+            }
+            
+            .footer-column-title {
+                font-size: var(--font-size-xs);
+            }
+            
+            .footer-column-links li a {
+                font-size: var(--font-size-xs);
+            }
+            
+            .footer-bottom {
+                padding: var(--spacing-4) 0;
+            }
+            
+            .copyright,
+            .legal-links a,
+            .market-status span {
+                font-size: var(--font-size-xs);
+            }
+        }
+
+        @media (min-width: 1200px) {
+            .title-line-1,
+            .title-line-2 {
+                font-size: var(--font-size-8xl);
+            }
+            
+            .hero-subtitle {
+                font-size: var(--font-size-2xl);
+            }
+            
+            .hero-stats {
+                grid-template-columns: repeat(4, 1fr);
+                max-width: 1200px;
+            }
+            
+            .content-grid {
+                gap: var(--spacing-20);
+            }
+            
+            .bank-cards {
+                gap: var(--spacing-6);
+            }
+            
+            .bank-link {
+                padding: var(--spacing-8);
+            }
+            
+            .info-card {
+                padding: var(--spacing-10);
+            }
+            
+            .footer-content {
+                gap: var(--spacing-16);
+            }
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #1a1a1a;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, #3b82f6, #06b6d4);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(135deg, #2563eb, #0891b2);
+        }
+    </style>
+</head>
+<body>
+    <!-- Background Elements -->
+    <div class="background-wrapper">
+        <!-- Animated Background Gradients -->
+        <div class="bg-gradient-1"></div>
+        <div class="bg-gradient-2"></div>
+        
+        <!-- Grid Pattern -->
+        <div class="grid-pattern">
+            <div class="grid-overlay-1"></div>
+            <div class="grid-overlay-2"></div>
+            <div class="grid-animated"></div>
+        </div>
+        
+        <!-- Luxury Particles -->
+        <div class="luxury-particles" id="luxuryParticles"></div>
+        
+        <!-- Mouse Follower -->
+        <div class="mouse-follower" id="mouseFollower"></div>
+        
+        <!-- Ambient Effects -->
+        <div class="ambient-light-1"></div>
+        <div class="ambient-light-2"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <div class="nav-content">
+                <!-- Logo -->
+                <div class="nav-logo">
+                    <div class="logo-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M3 9L12 2L21 9V20C21 20.5304 20.7893 21.0391 20.4142 21.4142C20.0391 21.7893 19.5304 22 19 22H5C4.46957 22 3.96086 21.7893 3.58579 21.4142C3.21071 21.0391 3 20.5304 3 20V9Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <span class="logo-text">Investor Relations</span>
+                </div>
+
+                <!-- Navigation Items -->
+                <div class="nav-items" id="navItems">
+                    <a href="#overview" class="nav-item">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M3 9L12 2L21 9V20C21 20.5304 20.7893 21.0391 20.4142 21.4142C20.0391 21.7893 19.5304 22 19 22H5C4.46957 22 3.96086 21.7893 3.58579 21.4142C3.21071 21.0391 3 20.5304 3 20V9Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <span>Overview</span>
+                    </a>
+                    <a href="#reports" class="nav-item">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <span>Reports</span>
+                    </a>
+                    <a href="#governance" class="nav-item">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M17 21V19C17 17.9391 16.5786 16.9217 15.8284 16.1716C15.0783 15.4214 14.0609 15 13 15H5C3.93913 15 2.92172 15.4214 2.17157 16.1716C1.42143 16.9217 1 17.9391 1 19V21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <circle cx="9" cy="7" r="4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M23 21V19C23 18.1645 22.7361 17.3541 22.2449 16.6944C21.7536 16.0348 21.0621 15.5647 20.2676 15.3499" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M16 3.13C16.8953 3.3448 17.5874 3.81487 18.0787 4.47454C18.57 5.13421 18.8336 5.94458 18.8336 6.78C18.8336 7.61542 18.57 8.42579 18.0787 9.08546C17.5874 9.74513 16.8953 10.2152 16 10.43" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <span>Governance</span>
+                    </a>
+                    <a href="#global" class="nav-item">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <line x1="2" y1="12" x2="22" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M12 2C14.5013 4.73835 15.9228 8.29203 16 12C15.9228 15.708 14.5013 19.2616 12 22C9.49872 19.2616 8.07725 15.708 8 12C8.07725 8.29203 9.49872 4.73835 12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <span>Global</span>
+                    </a>
+                    <a href="#contact" class="nav-item">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M22 16.92V19.92C22.0011 20.1985 21.9441 20.4742 21.8325 20.7293C21.7209 20.9845 21.5573 21.2136 21.3521 21.4019C21.1468 21.5901 20.9046 21.7335 20.6407 21.8227C20.3769 21.9119 20.0974 21.9451 19.82 21.92C16.7428 21.5856 13.787 20.5341 11.19 18.85C8.77382 17.3147 6.72533 15.2662 5.18999 12.85C3.49997 10.2412 2.44824 7.27099 2.11999 4.18C2.095 3.90347 2.12787 3.62476 2.21649 3.36162C2.30512 3.09849 2.44756 2.85669 2.63476 2.65162C2.82196 2.44655 3.0498 2.28271 3.30379 2.17052C3.55777 2.05833 3.83233 2.00026 4.10999 2H7.10999C7.59544 1.99522 8.06821 2.16708 8.43418 2.48353C8.80016 2.79999 9.03561 3.23945 9.10999 3.72C9.25025 4.68007 9.50618 5.62273 9.86999 6.53C10.0334 6.88792 10.0844 7.28912 10.0178 7.67727C9.95123 8.06541 9.77415 8.42669 9.50999 8.72L8.20999 10.02C9.61148 12.4135 11.5865 14.3885 13.98 15.79L15.28 14.49C15.5733 14.2258 15.9346 14.0488 16.3227 13.9822C16.7109 13.9156 17.1121 13.9666 17.47 14.13C18.3773 14.4938 19.3199 14.7497 20.28 14.89C20.7658 14.9653 21.2094 15.2058 21.5265 15.5775C21.8437 15.9492 22.0122 16.4297 22 16.92Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <span>Contact</span>
+                    </a>
+                </div>
+
+                <!-- CTA Button -->
+                <div class="nav-cta">
+                    <button class="cta-button">Investor Portal</button>
+                </div>
+
+                <!-- Mobile Menu Toggle -->
+                <button class="mobile-toggle" id="mobileToggle" aria-expanded="false">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section" id="overview">
+        <div class="hero-background-effects">
+            <div class="hero-bg-1"></div>
+            <div class="hero-bg-2"></div>
+        </div>
+        
+        <div class="container">
+            <div class="hero-content">
+                <!-- Premium Badge -->
+                <div class="premium-badge">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2L13.09 4.26L15.78 3L15.73 5.8L18.64 5.29L17.8 8.09L20.95 8.65L19.42 11.22L22 13L19.42 14.78L20.95 17.35L17.8 17.91L18.64 20.71L15.73 20.2L15.78 23L13.09 21.74L12 24L10.91 21.74L8.22 23L8.27 20.2L5.36 20.71L6.2 17.91L3.05 17.35L4.58 14.78L2 13L4.58 11.22L3.05 8.65L6.2 8.09L5.36 5.29L8.27 5.8L8.22 3L10.91 4.26L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span>GLOBAL FINANCIAL LEADERSHIP</span>
+                </div>
+
+                <!-- Main Title -->
+                <h1 class="hero-title">
+                    <span class="title-line-1">Of</span>
+                    <span class="title-line-2">Investor Relations</span>
+                </h1>
+
+                <!-- Subtitle -->
+                <p class="hero-subtitle">
+                    Connecting global financial institutions with transparent reporting, 
+                    strategic insights, and comprehensive investor resources across international markets.
+                </p>
+
+                <!-- Statistics -->
+                <div class="hero-stats">
+                    <div class="stat-card" data-stat="global">
+                        <div class="stat-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                                <line x1="2" y1="12" x2="22" y2="12" stroke="currentColor" stroke-width="2"/>
+                                <path d="M12 2C14.5013 4.73835 15.9228 8.29203 16 12C15.9228 15.708 14.5013 19.2616 12 22C9.49872 19.2616 8.07725 15.708 8 12C8.07725 8.29203 9.49872 4.73835 12 2Z" stroke="currentColor" stroke-width="2"/>
+                            </svg>
+                        </div>
+                        <div class="stat-value">50+</div>
+                        <div class="stat-label">Global Banks</div>
+                        <div class="stat-change">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <polyline points="23 6 13.5 15.5 8.5 10.5 1 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <polyline points="17 6 23 6 23 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            +15% growth
+                        </div>
+                    </div>
+
+                    <div class="stat-card" data-stat="assets">
+                        <div class="stat-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <polyline points="23 6 13.5 15.5 8.5 10.5 1 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <polyline points="17 6 23 6 23 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <div class="stat-value">$2.5T</div>
+                        <div class="stat-label">Assets Under Management</div>
+                        <div class="stat-change">Combined portfolio</div>
+                    </div>
+
+                    <div class="stat-card" data-stat="rating">
+                        <div class="stat-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 2L13.09 4.26L15.78 3L15.73 5.8L18.64 5.29L17.8 8.09L20.95 8.65L19.42 11.22L22 13L19.42 14.78L20.95 17.35L17.8 17.91L18.64 20.71L15.73 20.2L15.78 23L13.09 21.74L12 24L10.91 21.74L8.22 23L8.27 20.2L5.36 20.71L6.2 17.91L3.05 17.35L4.58 14.78L2 13L4.58 11.22L3.05 8.65L6.2 8.09L5.36 5.29L8.27 5.8L8.22 3L10.91 4.26L12 2Z" stroke="currentColor" stroke-width="2"/>
+                            </svg>
+                        </div>
+                        <div class="stat-value">AAA</div>
+                        <div class="stat-label">Credit Rating</div>
+                        <div class="stat-change">Investment grade</div>
+                    </div>
+
+                    <div class="stat-card" data-stat="experience">
+                        <div class="stat-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <div class="stat-value">25+</div>
+                        <div class="stat-label">Years Experience</div>
+                        <div class="stat-change">Industry leadership</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Decorative Elements -->
+        <div class="hero-decorations">
+            <div class="decoration-ring-1"></div>
+            <div class="decoration-ring-2"></div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <section class="main-content" id="reports">
+        <div class="container">
+            <div class="content-grid">
+                <!-- Bank Links Section -->
+                <div class="bank-links-section">
+                    <div class="section-header">
+                        <h2 class="section-title">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M3 9L12 2L21 9V20C21 20.5304 20.7893 21.0391 20.4142 21.4142C20.0391 21.7893 19.5304 22 19 22H5C4.46957 22 3.96086 21.7893 3.58579 21.4142C3.21071 21.0391 3 20.5304 3 20V9Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            Global Banking Partners
+                        </h2>
+                        <p class="section-description">
+                            Access investor relations resources from leading financial institutions worldwide. 
+                            Connect with comprehensive reports, financial data, and strategic insights.
+                        </p>
+                    </div>
+
+                    <div class="bank-cards">
+                        <div class="bank-card">
+                            <a href="https://jpmorganchase.com/investor-relations" target="_blank" rel="noopener noreferrer" class="bank-link">
+                                <div class="bank-content">
+                                    <div class="bank-info">
+                                        <div class="bank-logo">🏦</div>
+                                        <div class="bank-details">
+                                            <h3 class="bank-name">JPMorgan Chase & Co.</h3>
+                                            <div class="bank-meta">
+                                                <span class="bank-region">United States</span>
+                                                <div class="bank-assets">
+                                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <polyline points="23 6 13.5 15.5 8.5 10.5 1 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                    </svg>
+                                                    <span>$3.7T</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="bank-arrow">
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M7 17L17 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                            <path d="M7 7H17V17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+
+                        <div class="bank-card">
+                            <a href="https://investor.bankofamerica.com" target="_blank" rel="noopener noreferrer" class="bank-link">
+                                <div class="bank-content">
+                                    <div class="bank-info">
+                                        <div class="bank-logo">🏛️</div>
+                                        <div class="bank-details">
+                                            <h3 class="bank-name">Bank of America</h3>
+                                            <div class="bank-meta">
+                                                <span class="bank-region">United States</span>
+                                                <div class="bank-assets">
+                                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <polyline points="23 6 13.5 15.5 8.5 10.5 1 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                    </svg>
+                                                    <span>$3.2T</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="bank-arrow">
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M7 17L17 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                            <path d="M7 7H17V17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+
+                        <div class="bank-card">
+                            <a href="https://www.icbc.com.cn/en/investor" target="_blank" rel="noopener noreferrer" class="bank-link">
+                                <div class="bank-content">
+                                    <div class="bank-info">
+                                        <div class="bank-logo">🏢</div>
+                                        <div class="bank-details">
+                                            <h3 class="bank-name">Industrial & Commercial Bank of China</h3>
+                                            <div class="bank-meta">
+                                                <span class="bank-region">China</span>
+                                                <div class="bank-assets">
+                                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <polyline points="23 6 13.5 15.5 8.5 10.5 1 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                    </svg>
+                                                    <span>$5.7T</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="bank-arrow">
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M7 17L17 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                            <path d="M7 7H17V17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+
+                        <div class="bank-card">
+                            <a href="https://www.wellsfargo.com/about/investor-relations" target="_blank" rel="noopener noreferrer" class="bank-link">
+                                <div class="bank-content">
+                                    <div class="bank-info">
+                                        <div class="bank-logo">🏪</div>
+                                        <div class="bank-details">
+                                            <h3 class="bank-name">Wells Fargo & Company</h3>
+                                            <div class="bank-meta">
+                                                <span class="bank-region">United States</span>
+                                                <div class="bank-assets">
+                                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <polyline points="23 6 13.5 15.5 8.5 10.5 1 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                    </svg>
+                                                    <span>$1.9T</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="bank-arrow">
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M7 17L17 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                            <path d="M7 7H17V17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+
+                        <div class="bank-card">
+                            <a href="https://www.goldmansachs.com/investor-relations" target="_blank" rel="noopener noreferrer" class="bank-link">
+                                <div class="bank-content">
+                                    <div class="bank-info">
+                                        <div class="bank-logo">💼</div>
+                                        <div class="bank-details">
+                                            <h3 class="bank-name">Goldman Sachs Group</h3>
+                                            <div class="bank-meta">
+                                                <span class="bank-region">United States</span>
+                                                <div class="bank-assets">
+                                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <polyline points="23 6 13.5 15.5 8.5 10.5 1 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                    </svg>
+                                                    <span>$1.6T</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="bank-arrow">
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M7 17L17 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                            <path d="M7 7H17V17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+
+                        <div class="bank-card">
+                            <a href="https://www.hsbc.com/investors" target="_blank" rel="noopener noreferrer" class="bank-link">
+                                <div class="bank-content">
+                                    <div class="bank-info">
+                                        <div class="bank-logo">🇬🇧</div>
+                                        <div class="bank-details">
+                                            <h3 class="bank-name">HSBC Holdings plc</h3>
+                                            <div class="bank-meta">
+                                                <span class="bank-region">United Kingdom</span>
+                                                <div class="bank-assets">
+                                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <polyline points="23 6 13.5 15.5 8.5 10.5 1 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                    </svg>
+                                                    <span>$3.0T</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="bank-arrow">
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M7 17L17 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                            <path d="M7 7H17V17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+
+                        <div class="bank-card">
+                            <a href="https://invest.bnpparibas.com" target="_blank" rel="noopener noreferrer" class="bank-link">
+                                <div class="bank-content">
+                                    <div class="bank-info">
+                                        <div class="bank-logo">🇫🇷</div>
+                                        <div class="bank-details">
+                                            <h3 class="bank-name">BNP Paribas</h3>
+                                            <div class="bank-meta">
+                                                <span class="bank-region">France</span>
+                                                <div class="bank-assets">
+                                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <polyline points="23 6 13.5 15.5 8.5 10.5 1 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                    </svg>
+                                                    <span>$2.9T</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="bank-arrow">
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M7 17L17 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                            <path d="M7 7H17V17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+
+                        <div class="bank-card">
+                            <a href="https://www.boc.cn/en/investor" target="_blank" rel="noopener noreferrer" class="bank-link">
+                                <div class="bank-content">
+                                    <div class="bank-info">
+                                        <div class="bank-logo">🇨🇳</div>
+                                        <div class="bank-details">
+                                            <h3 class="bank-name">Bank of China</h3>
+                                            <div class="bank-meta">
+                                                <span class="bank-region">China</span>
+                                                <div class="bank-assets">
+                                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <polyline points="23 6 13.5 15.5 8.5 10.5 1 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                    </svg>
+                                                    <span>$4.1T</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="bank-arrow">
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M7 17L17 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                            <path d="M7 7H17V17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Partnership Info -->
+                    <div class="partnership-info">
+                        <h4 class="partnership-title">Partnership Network</h4>
+                        <p class="partnership-description">
+                            Our platform aggregates investor relations data from over 50 global financial institutions, 
+                            providing unified access to comprehensive financial reports, earnings calls, and strategic announcements.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Information Section -->
+                <div class="information-section" id="governance">
+                    <!-- Resources & Disclosures -->
+                    <div class="info-card" data-section="resources">
+                        <div class="info-header">
+                            <div class="info-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <polyline points="14,2 14,8 20,8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+                            <h3 class="info-title">Resources & Disclosures</h3>
+                        </div>
+                        
+                        <div class="info-items">
+                            <div class="info-item">
+                                <div class="item-content">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M21 15V19C21 19.5304 20.7893 20.0391 20.4142 20.4142C20.0391 20.7893 19.5304 21 19 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <polyline points="7,10 12,15 17,10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <line x1="12" y1="15" x2="12" y2="3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                    <div class="item-details">
+                                        <div class="item-name">Annual Reports</div>
+                                        <div class="item-meta">PDF • 12.5 MB • 2024</div>
+                                    </div>
+                                </div>
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <polyline points="9,18 15,12 9,6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+
+                            <div class="info-item">
+                                <div class="item-content">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M21 15V19C21 19.5304 20.7893 20.0391 20.4142 20.4142C20.0391 20.7893 19.5304 21 19 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <polyline points="7,10 12,15 17,10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <line x1="12" y1="15" x2="12" y2="3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                    <div class="item-details">
+                                        <div class="item-name">Quarterly Earnings</div>
+                                        <div class="item-meta">PDF • 3.2 MB • Q4 2024</div>
+                                    </div>
+                                </div>
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <polyline points="9,18 15,12 9,6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+
+                            <div class="info-item">
+                                <div class="item-content">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M21 15V19C21 19.5304 20.7893 20.0391 20.4142 20.4142C20.0391 20.7893 19.5304 21 19 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <polyline points="7,10 12,15 17,10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <line x1="12" y1="15" x2="12" y2="3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                    <div class="item-details">
+                                        <div class="item-name">SEC Filings</div>
+                                        <div class="item-meta">HTML • Various • Current</div>
+                                    </div>
+                                </div>
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <polyline points="9,18 15,12 9,6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+
+                            <div class="info-item">
+                                <div class="item-content">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M21 15V19C21 19.5304 20.7893 20.0391 20.4142 20.4142C20.0391 20.7893 19.5304 21 19 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <polyline points="7,10 12,15 17,10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <line x1="12" y1="15" x2="12" y2="3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                    <div class="item-details">
+                                        <div class="item-name">Proxy Statements</div>
+                                        <div class="item-meta">PDF • 8.1 MB • 2024</div>
+                                    </div>
+                                </div>
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <polyline points="9,18 15,12 9,6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+
+                            <div class="info-item">
+                                <div class="item-content">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M21 15V19C21 19.5304 20.7893 20.0391 20.4142 20.4142C20.0391 20.7893 19.5304 21 19 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <polyline points="7,10 12,15 17,10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <line x1="12" y1="15" x2="12" y2="3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                    <div class="item-details">
+                                        <div class="item-name">Form 10-K</div>
+                                        <div class="item-meta">PDF • 15.3 MB • 2024</div>
+                                    </div>
+                                </div>
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <polyline points="9,18 15,12 9,6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Corporate Governance -->
+                    <div class="info-card" data-section="governance">
+                        <div class="info-header">
+                            <div class="info-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M12 22S8 18 8 14V5L12 3L16 5V14C16 18 12 22 12 22Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+                            <h3 class="info-title">Corporate Governance</h3>
+                        </div>
+                        
+                        <div class="governance-items">
+                            <div class="governance-item">
+                                <h4 class="governance-name">Board of Directors</h4>
+                                <p class="governance-description">Leadership team profiles and experience</p>
+                            </div>
+                            <div class="governance-item">
+                                <h4 class="governance-name">Committee Charters</h4>
+                                <p class="governance-description">Audit, Risk, and Compensation committees</p>
+                            </div>
+                            <div class="governance-item">
+                                <h4 class="governance-name">Code of Conduct</h4>
+                                <p class="governance-description">Ethical guidelines and compliance standards</p>
+                            </div>
+                            <div class="governance-item">
+                                <h4 class="governance-name">ESG Framework</h4>
+                                <p class="governance-description">Environmental, Social, and Governance initiatives</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Financial Statements -->
+                    <div class="info-card" data-section="statements">
+                        <div class="info-header">
+                            <div class="info-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <polyline points="22,12 18,12 15,21 9,3 6,12 2,12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+                            <h3 class="info-title">Financial Statements</h3>
+                        </div>
+                        
+                        <div class="financial-grid">
+                            <div class="financial-item">
+                                <div class="financial-value">$5.2T</div>
+                                <div class="financial-label">Balance Sheet</div>
+                                <div class="financial-change">+3.2%</div>
+                            </div>
+                            <div class="financial-item">
+                                <div class="financial-value">$48.3B</div>
+                                <div class="financial-label">Income Statement</div>
+                                <div class="financial-change">+5.7%</div>
+                            </div>
+                            <div class="financial-item">
+                                <div class="financial-value">$12.1B</div>
+                                <div class="financial-label">Cash Flow</div>
+                                <div class="financial-change">+2.1%</div>
+                            </div>
+                            <div class="financial-item">
+                                <div class="financial-value">$284.5B</div>
+                                <div class="financial-label">Equity Statement</div>
+                                <div class="financial-change">+4.3%</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Investor Services -->
+                    <div class="info-card" data-section="services">
+                        <div class="info-header">
+                            <div class="info-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M17 21V19C17 17.9391 16.5786 16.9217 15.8284 16.1716C15.0783 15.4214 14.0609 15 13 15H5C3.93913 15 2.92172 15.4214 2.17157 16.1716C1.42143 16.9217 1 17.9391 1 19V21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <circle cx="9" cy="7" r="4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M23 21V19C23 18.1645 22.7361 17.3541 22.2449 16.6944C21.7536 16.0348 21.0621 15.5647 20.2676 15.3499" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M16 3.13C16.8953 3.3448 17.5874 3.81487 18.0787 4.47454C18.57 5.13421 18.8336 5.94458 18.8336 6.78C18.8336 7.61542 18.57 8.42579 18.0787 9.08546C17.5874 9.74513 16.8953 10.2152 16 10.43" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+                            <h3 class="info-title">Investor Services</h3>
+                        </div>
+                        
+                        <div class="services-grid">
+                            <div class="service-item">
+                                <h4 class="service-name">Dividend Information</h4>
+                                <p class="service-description">Dividend history, dates, and reinvestment options</p>
+                            </div>
+                            <div class="service-item">
+                                <h4 class="service-name">Stock Information</h4>
+                                <p class="service-description">Real-time quotes, historical data, and analysis</p>
+                            </div>
+                            <div class="service-item">
+                                <h4 class="service-name">Event Calendar</h4>
+                                <p class="service-description">Earnings calls, conferences, and investor meetings</p>
+                            </div>
+                            <div class="service-item">
+                                <h4 class="service-name">Email Alerts</h4>
+                                <p class="service-description">Automated notifications for key announcements</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Contact Information -->
+                    <div class="info-card" data-section="contact" id="contact">
+                        <div class="info-header">
+                            <div class="info-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M22 16.92V19.92C22.0011 20.1985 21.9441 20.4742 21.8325 20.7293C21.7209 20.9845 21.5573 21.2136 21.3521 21.4019C21.1468 21.5901 20.9046 21.7335 20.6407 21.8227C20.3769 21.9119 20.0974 21.9451 19.82 21.92C16.7428 21.5856 13.787 20.5341 11.19 18.85C8.77382 17.3147 6.72533 15.2662 5.18999 12.85C3.49997 10.2412 2.44824 7.27099 2.11999 4.18C2.095 3.90347 2.12787 3.62476 2.21649 3.36162C2.30512 3.09849 2.44756 2.85669 2.63476 2.65162C2.82196 2.44655 3.0498 2.28271 3.30379 2.17052C3.55777 2.05833 3.83233 2.00026 4.10999 2H7.10999C7.59544 1.99522 8.06821 2.16708 8.43418 2.48353C8.80016 2.79999 9.03561 3.23945 9.10999 3.72C9.25025 4.68007 9.50618 5.62273 9.86999 6.53C10.0334 6.88792 10.0844 7.28912 10.0178 7.67727C9.95123 8.06541 9.77415 8.42669 9.50999 8.72L8.20999 10.02C9.61148 12.4135 11.5865 14.3885 13.98 15.79L15.28 14.49C15.5733 14.2258 15.9346 14.0488 16.3227 13.9822C16.7109 13.9156 17.1121 13.9666 17.47 14.13C18.3773 14.4938 19.3199 14.7497 20.28 14.89C20.7658 14.9653 21.2094 15.2058 21.5265 15.5775C21.8437 15.9492 22.0122 16.4297 22 16.92Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+                            <h3 class="info-title">Investor Contact</h3>
+                        </div>
+                        
+                        <div class="contact-details">
+                            <div class="contact-item">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M22 16.92V19.92C22.0011 20.1985 21.9441 20.4742 21.8325 20.7293C21.7209 20.9845 21.5573 21.2136 21.3521 21.4019C21.1468 21.5901 20.9046 21.7335 20.6407 21.8227C20.3769 21.9119 20.0974 21.9451 19.82 21.92C16.7428 21.5856 13.787 20.5341 11.19 18.85C8.77382 17.3147 6.72533 15.2662 5.18999 12.85C3.49997 10.2412 2.44824 7.27099 2.11999 4.18C2.095 3.90347 2.12787 3.62476 2.21649 3.36162C2.30512 3.09849 2.44756 2.85669 2.63476 2.65162C2.82196 2.44655 3.0498 2.28271 3.30379 2.17052C3.55777 2.05833 3.83233 2.00026 4.10999 2H7.10999C7.59544 1.99522 8.06821 2.16708 8.43418 2.48353C8.80016 2.79999 9.03561 3.23945 9.10999 3.72C9.25025 4.68007 9.50618 5.62273 9.86999 6.53C10.0334 6.88792 10.0844 7.28912 10.0178 7.67727C9.95123 8.06541 9.77415 8.42669 9.50999 8.72L8.20999 10.02C9.61148 12.4135 11.5865 14.3885 13.98 15.79L15.28 14.49C15.5733 14.2258 15.9346 14.0488 16.3227 13.9822C16.7109 13.9156 17.1121 13.9666 17.47 14.13C18.3773 14.4938 19.3199 14.7497 20.28 14.89C20.7658 14.9653 21.2094 15.2058 21.5265 15.5775C21.8437 15.9492 22.0122 16.4297 22 16.92Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                <span>+1 (212) 270-6000</span>
+                            </div>
+                            <div class="contact-item">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <line x1="2" y1="12" x2="22" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M12 2C14.5013 4.73835 15.9228 8.29203 16 12C15.9228 15.708 14.5013 19.2616 12 22C9.49872 19.2616 8.07725 15.708 8 12C8.07725 8.29203 9.49872 4.73835 12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                <span>investor.relations@globalbank.com</span>
+                            </div>
+                            <div class="contact-item">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M21 10C21 17 12 23 12 23S3 17 3 10C3 7.61305 3.94821 5.32387 5.63604 3.63604C7.32387 1.94821 9.61305 1 12 1C14.3869 1 16.6761 1.94821 18.3639 3.63604C20.0518 5.32387 21 7.61305 21 10Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <circle cx="12" cy="10" r="3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                <div>
+                                    <div>270 Park Avenue, New York, NY 10017</div>
+                                    <div class="contact-hours">Monday - Friday, 8:00 AM - 6:00 PM EST</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="contact-cta">
+                            <button class="meeting-button" onclick="scheduleMeeting()">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <line x1="16" y1="2" x2="16" y2="6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <line x1="8" y1="2" x2="8" y2="6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <line x1="3" y1="10" x2="21" y2="10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                Schedule Investor Meeting
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" id="global">
+        <div class="container">
+            <div class="footer-content">
+                <!-- Brand Section -->
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <div class="footer-logo-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M3 9L12 2L21 9V20C21 20.5304 20.7893 21.0391 20.4142 21.4142C20.0391 21.7893 19.5304 22 19 22H5C4.46957 22 3.96
